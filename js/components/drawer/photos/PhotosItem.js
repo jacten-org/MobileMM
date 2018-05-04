@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, Button, View, Image, StyleSheet, TouchableOpacity, PixelRatio } from 'react-native';
 
-const PhotosItem = ({ avatar, selectPhotoTapped, image }) => {
+const PhotosItem = ({ avatar, handlePhotoTap, image }) => {
 
   const type = avatar ? 'avatar' : 'smallImg'
 
   return (
-    <TouchableOpacity onPress={selectPhotoTapped}>
+    <TouchableOpacity onPress={handlePhotoTap}>
       <View style={[styles[type], styles.imageContainer]}>
       { image === null ? <Text>Select a Photo</Text> :
         <Image style={styles[type]} source={{uri: image}} />

@@ -30,6 +30,7 @@ class Photos extends Component {
       img3: null,
       img4: null,
       modalVisible: false,
+      targetPhoto: null,
     }
   }
 
@@ -46,17 +47,28 @@ class Photos extends Component {
     }
   };
 
-  
+  handlePhotoTap = (number, imgState) => {
+    if (this.props.userPhotos[number] && this.props.userPhotos[number].url) {
+      this.setModalVisible(true, number)
+    } else {
+      this.selectPhotoTapped(imgState)
+    }
+  }
 
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+  setModalVisible = (visible, target) => {
+    this.setState({
+      modalVisible: visible,
+      targetPhoto: target
+    });
   }
 
   selectPhotoTapped = (imgState) => {
+  
     const options = {
       quality: 1.0,
       maxWidth: 1000,
       maxHeight: 1000,
+      mediaType: 'photo',
       storageOptions: {
         skipBackup: true
       }
@@ -72,18 +84,35 @@ class Photos extends Component {
         console.log('ImagePicker Error: ', response.error);
       }
       else {
-
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
         let newStateObj = {};
-
         newStateObj[imgState] = response.uri;
-
-        this.setState(
-          newStateObj
-        );
+        this.setState(newStateObj);
       }
     });
+  }
+
+  handleSubmit = () => {
+    const formData = new FormData();
+    formData.append('file', this.state.file);
+    formData.append('id', this.props.userId);
+    formData.append('username', this.props.username);
+    this.props.uploadPhoto(formData);
+    this.setState({filename: "Choose a file"});
+  }
+
+  handleDeletePhoto = (target) => {
+    const { url, id } = this.props.userPhotos[target];
+    const key = url.slice(46);
+    this.props.deletePhoto(key, id, target);
+    this.setModalVisible(!this.state.modalVisible);
+  }
+
+  handleSetAvatar = (target) => {
+    const { id } = this.props.userPhotos[target];
+    this.props.updatePrimaryPhoto(id, target);
+    this.setModalVisible(!this.state.modalVisible);
   }
 
   render() {
@@ -93,17 +122,17 @@ class Photos extends Component {
           animationType="fade"
           transparent={true}
           visible={this.state.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}>
+          >
           <View style={styles.modal}>
             <ModalButton
               title={'Set Avatar'}
-              onPress={() => {this.setModalVisible(!this.state.modalVisible);}}
+              color={'#c0d6e4'}
+              onPress={() => {this.handleSetAvatar(this.state.targetPhoto);}}
               />
             <ModalButton
               title={'Delete Photo'}
-              onPress={() => {this.setModalVisible(!this.state.modalVisible);}}
+              color={'#fb9692'}
+              onPress={() => {this.handleDeletePhoto(this.state.targetPhoto);}}
               />
             <ModalButton
               title={'Cancel'}
@@ -113,30 +142,30 @@ class Photos extends Component {
         </Modal>
         <PhotosItem 
           avatar 
-          selectPhotoTapped={() => this.selectPhotoTapped('avatar')} 
+          handlePhotoTap={() => this.handlePhotoTap(0, 'avatar')} 
           image={this.props.userPhotos[0] && this.props.userPhotos[0].url || this.state.avatar}
           />
         <View style={styles.smallPhotosContainer}>
           <PhotosItem 
             smallImg 
-            selectPhotoTapped={() => this.selectPhotoTapped('img1')} 
+            handlePhotoTap={() => this.handlePhotoTap(1, 'img1')} 
             image={this.props.userPhotos[1] && this.props.userPhotos[1].url || this.state.img1}
             />
           <PhotosItem 
             smallImg 
-            selectPhotoTapped={() => this.selectPhotoTapped('img2')} 
+            handlePhotoTap={() => this.handlePhotoTap(2, 'img2')} 
             image={this.props.userPhotos[2] && this.props.userPhotos[2].url || this.state.img2}
             />
         </View>
         <View style={styles.smallPhotosContainer}>
           <PhotosItem 
             smallImg 
-            selectPhotoTapped={() => this.selectPhotoTapped('img3')} 
+            handlePhotoTap={() => this.handlePhotoTap(3, 'img3')} 
             image={this.props.userPhotos[3] && this.props.userPhotos[3].url || this.state.img3}
             />
           <PhotosItem 
             smallImg 
-            selectPhotoTapped={() => this.selectPhotoTapped('img4')} 
+            handlePhotoTap={() => this.handlePhotoTap(4, 'img4')} 
             image={this.props.userPhotos[4] && this.props.userPhotos[4].url || this.state.img4}
             />
         </View>
