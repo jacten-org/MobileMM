@@ -20,7 +20,7 @@ import AuthLoading from './components/authLoading/AuthLoading';
 import Logout from './components/drawer/Logout';
 import Leaderboard from './components/drawer/leaderboard/Leaderboard';
 import Results from './components/drawer/results/Results';
-import Photos from './components/drawer/Photos';
+import Photos from './components/drawer/photos/Photos';
 import Tags from './components/drawer/Tags';
 import Account from './components/drawer/Account';
 import Content from './components/drawer/Content';
