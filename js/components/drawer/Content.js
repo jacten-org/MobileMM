@@ -19,24 +19,21 @@ const styles = StyleSheet.create({
   },
   header: { 
     alignItems: 'center', 
-    justifyContent: 'space-between', 
+    justifyContent: 'center', 
     flex: 4, flexDirection: 'column'
   },
   name: { 
-    flex: 1, 
     color: 'white', 
     fontSize: 23, 
     alignItems: 'center',
     margin: 2,
-    padding: 2,
+    marginTop: 5,
   },
   username: { 
-    flex: 1, 
     color: 'white', 
     fontSize: 20, 
     alignItems: 'center',
     margin: 2,
-    paddingBottom: 10,
     fontWeight: 'bold'
   }
 });

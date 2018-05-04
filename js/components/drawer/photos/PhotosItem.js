@@ -9,7 +9,7 @@ const PhotosItem = ({ avatar, selectPhotoTapped, image }) => {
     <TouchableOpacity onPress={selectPhotoTapped}>
       <View style={[styles[type], styles.imageContainer]}>
       { image === null ? <Text>Select a Photo</Text> :
-        <Image style={styles[type]} source={image} />
+        <Image style={styles[type]} source={{uri: image}} />
       }
       </View>
     </TouchableOpacity>
@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
     backgroundColor: 'white',
+    shadowOpacity: 0.6,
+    shadowRadius: 5,
+    shadowColor: 'black',
+    shadowOffset: { height: 3, width: 3 },
   },
   avatar: {
     borderRadius: 150,
@@ -31,7 +35,7 @@ const styles = StyleSheet.create({
     height: 300
   },
   smallImg: {
-    borderRadius: 10,
+    borderRadius: 0,
     width: 140,
     height: 140,
   }
