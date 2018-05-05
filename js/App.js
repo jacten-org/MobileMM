@@ -158,8 +158,8 @@ const DrawerStack = DrawerNavigator(
     contentOptions: {
       labelStyle: {
         color: 'white',
-        fontSize: 19,
-        fontWeight: '500',
+        fontSize: 18,
+        fontWeight: '600',
       }
     },
   }

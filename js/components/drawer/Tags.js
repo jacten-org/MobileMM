@@ -10,7 +10,7 @@ class Tags extends Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      headerRight: <X close={() => navigation.navigate('Main')}/>,
+      headerRight: <X onTap={() => navigation.navigate('Main')}/>,
       drawerIcon: () => (
         <Image
           style={{width: 41, height: 30, tintColor: 'white'}}

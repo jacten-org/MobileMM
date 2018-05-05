@@ -13,7 +13,7 @@ class Leaderboard extends Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      headerRight: <X close={() => navigation.navigate('Main')}/>,
+      headerRight: <X onTap={() => navigation.navigate('Main')}/>,
       drawerIcon: () => (
         <Image
           style={{width: 30, height: 30, tintColor: 'white'}}

@@ -1,14 +1,36 @@
 import React from 'react';
-import { Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 
-const X = (props) => {
+const X = ({ onTap , circle }) => {
   return(
-  <TouchableOpacity onPress={()=> {props.close()}}>
-    <Image
-      style={{margin: 5, width: 30, height: 30, tintColor: 'white'}}
-      source={require('./../../../icons/png-64px/whiteClose.png')}
-      > 
-    </Image>
+  <TouchableOpacity onPress={()=> {onTap()}}>
+    <View style={
+      circle && 
+      {
+        width: 34,
+        height: 34,
+        borderRadius: 17,
+        backgroundColor: 'grey',
+        justifyContent:'center',
+        alignItems: 'center',
+      }
+    }>
+      <Image
+        style={
+          [{
+            margin: 5, 
+            width: 30, 
+            height: 30, 
+            tintColor: 'white'
+          },
+          circle && {
+            borderRadius: 17,
+          }
+          ]}
+        source={require('./../../../icons/png-64px/whiteClose.png')}
+        > 
+      </Image>
+    </View>
   </TouchableOpacity>
 
   )

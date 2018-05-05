@@ -31,7 +31,7 @@ class Photos extends Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      headerRight: <X close={() => navigation.navigate('Main')}/>,
+      headerRight: <X onTap={() => navigation.navigate('Main')}/>,
       drawerIcon: () => (
         <Image
           style={{width: 30, height: 30, tintColor: 'white'}}
@@ -112,11 +112,13 @@ class Photos extends Component {
           visible={this.state.modalVisible}
           >
           <View style={styles.modal}>
-            <ModalButton
-              title={'Set Avatar'}
-              color={'#c0d6e4'}
-              onPress={() => {this.handleSetAvatar(this.state.targetPhoto);}}
-              />
+            { this.state.targetPhoto !== 0 &&
+              <ModalButton
+                title={'Set Avatar'}
+                color={'#c0d6e4'}
+                onPress={() => {this.handleSetAvatar(this.state.targetPhoto);}}
+                />
+            }
             <ModalButton
               title={'Delete Photo'}
               color={'#fb9692'}
@@ -131,30 +133,30 @@ class Photos extends Component {
         <PhotosItem 
           avatar 
           handlePhotoTap={() => this.handlePhotoTap(0, 'avatar')} 
-          image={this.props.userPhotos[0] && this.props.userPhotos[0].url || this.state.avatar}
+          image={this.props.userPhotos[0] && this.props.userPhotos[0].url}
           />
         <View style={styles.smallPhotosContainer}>
           <PhotosItem 
             smallImg 
             handlePhotoTap={() => this.handlePhotoTap(1, 'img1')} 
-            image={this.props.userPhotos[1] && this.props.userPhotos[1].url || this.state.img1}
+            image={this.props.userPhotos[1] && this.props.userPhotos[1].url }
             />
           <PhotosItem 
             smallImg 
             handlePhotoTap={() => this.handlePhotoTap(2, 'img2')} 
-            image={this.props.userPhotos[2] && this.props.userPhotos[2].url || this.state.img2}
+            image={this.props.userPhotos[2] && this.props.userPhotos[2].url}
             />
         </View>
         <View style={styles.smallPhotosContainer}>
           <PhotosItem 
             smallImg 
             handlePhotoTap={() => this.handlePhotoTap(3, 'img3')} 
-            image={this.props.userPhotos[3] && this.props.userPhotos[3].url || this.state.img3}
+            image={this.props.userPhotos[3] && this.props.userPhotos[3].url}
             />
           <PhotosItem 
             smallImg 
             handlePhotoTap={() => this.handlePhotoTap(4, 'img4')} 
-            image={this.props.userPhotos[4] && this.props.userPhotos[4].url || this.state.img4}
+            image={this.props.userPhotos[4] && this.props.userPhotos[4].url}
             />
         </View>
       </View>

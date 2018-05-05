@@ -16,24 +16,25 @@ const styles = StyleSheet.create({
   drawer: {
     flex: 1,
     padding: 20,
+    alignItems: 'center', 
   },
   header: { 
     alignItems: 'center', 
-    justifyContent: 'center', 
-    flex: 4, flexDirection: 'column'
+    justifyContent: 'flex-end', 
+    flex: 4, 
+    flexDirection: 'column',
+    marginBottom: 20,
   },
   name: { 
     color: 'white', 
     fontSize: 23, 
     alignItems: 'center',
-    margin: 2,
     marginTop: 5,
   },
   username: { 
     color: 'white', 
     fontSize: 20, 
     alignItems: 'center',
-    margin: 2,
     fontWeight: 'bold'
   }
 });
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
 const DrawerContent = (props) => (
 <View style={styles.drawer}>
   <View style={styles.header}>
-    <Avatar xlarge round source={{uri: props.userAvatar}}/>
+    <Avatar xxl round source={{uri: props.userAvatar}}/>
     <Text style={styles.name}>
       {props.realName} 
     </Text> 

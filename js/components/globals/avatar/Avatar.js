@@ -8,6 +8,7 @@ const Avatar = (props) => {
     medium, 
     large, 
     xlarge,
+    xxl,
     source,
     round
   } = props;
@@ -28,6 +29,9 @@ const Avatar = (props) => {
   } else if (xlarge) {
     width = 150;
     height = 150;
+  } else if (xxl) {
+    width = 195;
+    height = 195;
   } else if (!width && !height) {
     width = 34;
     height = 34;
