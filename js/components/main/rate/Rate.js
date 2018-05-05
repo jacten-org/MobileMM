@@ -6,6 +6,8 @@ import {
   View,
 } from 'react-native';
 
+import OpenDrawer from './../../globals/buttons/OpenDrawer';
+
 class Rate extends Component {
   constructor() {
     super();
@@ -14,10 +16,8 @@ class Rate extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerLeft:(
-        <Button 
-          onPress={() => navigation.navigate('DrawerOpen')} 
-          title='Drawer'
-          color='#fff'
+        <OpenDrawer 
+          onTouch={() => navigation.navigate('DrawerOpen')} 
           />
       ),
     };

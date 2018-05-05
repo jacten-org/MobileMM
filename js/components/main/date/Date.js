@@ -8,6 +8,8 @@ import {
   Button 
 } from 'react-native';
 
+import OpenDrawer from './../../globals/buttons/OpenDrawer';
+
 class Date extends Component {
   constructor() {
     super();
@@ -16,10 +18,8 @@ class Date extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerLeft:(
-        <Button 
-          onPress={() => navigation.navigate('DrawerOpen')} 
-          title='Drawer'
-          color='#fff'
+        <OpenDrawer 
+          onTouch={() => navigation.navigate('DrawerOpen')} 
           />
       ),
     };

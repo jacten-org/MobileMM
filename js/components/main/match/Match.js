@@ -6,6 +6,8 @@ import {
   TouchableOpacity 
 } from 'react-native';
 
+import OpenDrawer from './../../globals/buttons/OpenDrawer';
+
 class Match extends Component {
   constructor(props) {
     super(props);
@@ -14,10 +16,8 @@ class Match extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerLeft:(
-        <Button 
-          onPress={() => navigation.navigate('DrawerOpen')} 
-          title='Drawer'
-          color='#fff'
+        <OpenDrawer 
+          onTouch={() => navigation.navigate('DrawerOpen')} 
           />
       ),
     };

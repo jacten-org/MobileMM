@@ -1,17 +1,16 @@
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 
-const X = (props) => {
+const OpenDrawer = ({onTouch}) => {
+
   return(
-  <TouchableOpacity onPress={()=> {props.close()}}>
+  <TouchableOpacity onPress={() => onTouch()}>
     <Image
       style={{margin: 5, width: 30, height: 30, tintColor: 'white'}}
-      source={require('./../../../icons/png-64px/whiteClose.png')}
-      > 
-    </Image>
+      source={require('./../../../icons/png-64px/drawer.png')}
+      />
   </TouchableOpacity>
-
   )
 }
 
-export default X;
+export default OpenDrawer;
