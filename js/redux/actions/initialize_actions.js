@@ -10,7 +10,7 @@ export default {
   initialize(navigate) {
     return async (dispatch, getState) => {
       try {
-        let id = 28;
+        let id = 25;
         console.log(REST_SERVER_URL, id)
         // const { id } = await jwtDecode(localStorage.token);
         const { data } = await axios.get(

@@ -5,11 +5,15 @@ const PhotosItem = ({ avatar, handlePhotoTap, image }) => {
 
   const type = avatar ? 'avatar' : 'smallImg'
 
+  console.log(image)
+
   return (
     <TouchableOpacity onPress={handlePhotoTap}>
       <View style={[styles[type], styles.imageContainer]}>
-      { image === null ? <Text>Select a Photo</Text> :
-        <Image style={styles[type]} source={{uri: image}} />
+      { 
+        image === undefined 
+        ? <Text>Select a Photo</Text> 
+        : <Image style={styles[type]} source={{uri: image}} />
       }
       </View>
     </TouchableOpacity>

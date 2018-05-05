@@ -70,10 +70,14 @@ export default {
       }
     }
   },
-  deletePhoto(key, photoId, targetPhoto) {
+  deletePhoto(key, photoId, targetPhoto, secondPhotoId) {
     return async (dispatch, getState) => {
       try {
         const { id } = getState().accountData;
+        if (targetPhoto === 0) {
+          await axios.
+            put(`${REST_SERVER_URL}/api/photos/updatePrimaryPhoto/${id}/${secondPhotoId}`)
+        }
         await axios
           .delete(`${S3_SERVER_URL}/api/s3/${id}/${key}/${photoId}`)
         dispatch({

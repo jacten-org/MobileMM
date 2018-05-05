@@ -24,11 +24,6 @@ class Photos extends Component {
     super(props);
 
     this.state = {
-      avatar: null,
-      img1: null,
-      img2: null,
-      img3: null,
-      img4: null,
       modalVisible: false,
       targetPhoto: null,
     }
@@ -66,8 +61,8 @@ class Photos extends Component {
   
     const options = {
       quality: 1.0,
-      maxWidth: 1000,
-      maxHeight: 1000,
+      maxWidth: 500,
+      maxHeight: 500,
       mediaType: 'photo',
       storageOptions: {
         skipBackup: true
@@ -75,8 +70,6 @@ class Photos extends Component {
     };
 
     ImagePicker.launchImageLibrary(options, (response) => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled photo picker');
       }
@@ -84,9 +77,6 @@ class Photos extends Component {
         console.log('ImagePicker Error: ', response.error);
       }
       else {
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
         this.handleSubmit(response.data)
       }
     });
@@ -103,7 +93,7 @@ class Photos extends Component {
   handleDeletePhoto = (target) => {
     const { url, id } = this.props.userPhotos[target];
     const key = url.slice(46);
-    this.props.deletePhoto(key, id, target);
+    this.props.deletePhoto(key, id, target, this.props.userPhotos[1].id);
     this.setModalVisible(!this.state.modalVisible);
   }
 
@@ -114,7 +104,6 @@ class Photos extends Component {
   }
 
   render() {
-    console.log(this.state.img4)
     return (
       <View style={styles.container}>
         <Modal
