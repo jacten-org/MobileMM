@@ -86,20 +86,18 @@ class Photos extends Component {
       else {
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-        let newStateObj = {};
-        newStateObj[imgState] = response.uri;
-        this.setState(newStateObj);
+
+        this.handleSubmit(response.data)
       }
     });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (response) => {
     const formData = new FormData();
-    formData.append('file', this.state.file);
+    formData.append('file', response);
     formData.append('id', this.props.userId);
     formData.append('username', this.props.username);
     this.props.uploadPhoto(formData);
-    this.setState({filename: "Choose a file"});
   }
 
   handleDeletePhoto = (target) => {
@@ -116,6 +114,7 @@ class Photos extends Component {
   }
 
   render() {
+    console.log(this.state.img4)
     return (
       <View style={styles.container}>
         <Modal

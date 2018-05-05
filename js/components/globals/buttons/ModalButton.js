@@ -19,7 +19,6 @@ const ModalButton = ({onPress, title, color}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 50,
     margin: 10,
   },
   button: {
@@ -27,10 +26,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     backgroundColor: 'slategrey',
-    padding: 10,
+    padding: 13,
   },
   text: {
-    fontSize: 20,
+    fontSize: 23,
   }
 })
 
