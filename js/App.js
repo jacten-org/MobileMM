@@ -21,7 +21,7 @@ import Logout from './components/drawer/Logout';
 import Leaderboard from './components/drawer/leaderboard/Leaderboard';
 import Results from './components/drawer/results/Results';
 import Photos from './components/drawer/photos/Photos';
-import Tags from './components/drawer/Tags';
+import Tags from './components/drawer/tags/Tags';
 import Account from './components/drawer/Account';
 import Content from './components/drawer/Content';
 import Settings from './components/drawer/Settings';
@@ -44,7 +44,7 @@ const TabStack = TabNavigator(
     },
   },
   {
-    animationEnabled: true,
+    animationEnabled: false,
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     lazy: false,
@@ -64,6 +64,30 @@ const TabStack = TabNavigator(
   }
 )
 
+const TopBarOptions = {
+  animationEnabled: true,
+  tabBarComponent: TabBarTop,
+  tabBarPosition: 'top',
+  lazy: false,
+  tabBarOptions: {
+    initialRouteName: 'Results',
+    backBehavior: 'none',
+    activeTintColor: HeaderColor,
+    inactiveTintColor: 'lightgrey',
+    labelStyle: {
+      fontSize: 19,
+      fontWeight: 'bold',
+    },
+    style: {
+      backgroundColor: 'white',
+    },
+    indicatorStyle: {
+      borderBottomColor: HeaderColor,
+      borderBottomWidth: 6,
+    }
+  },
+}
+
 const resultsTabStack = TabNavigator(
   {
     All: {
@@ -73,29 +97,19 @@ const resultsTabStack = TabNavigator(
       screen: Results,
     },
   },
+  TopBarOptions
+)
+
+const tagsTabStack = TabNavigator(
   {
-    animationEnabled: true,
-    tabBarComponent: TabBarTop,
-    tabBarPosition: 'top',
-    lazy: false,
-    tabBarOptions: {
-      initialRouteName: 'Results',
-      backBehavior: 'none',
-      activeTintColor: HeaderColor,
-      inactiveTintColor: 'lightgrey',
-      labelStyle: {
-        fontSize: 19,
-        fontWeight: 'bold',
-      },
-      style: {
-        backgroundColor: 'white',
-      },
-      indicatorStyle: {
-        borderBottomColor: HeaderColor,
-        borderBottomWidth: 6,
-      }
+    You: {
+      screen: Tags,
     },
-  }
+    'Your Mate': {
+      screen: Tags,
+    },
+  },
+  TopBarOptions
 )
 
 const stdHeaderNavOptions = (title) => { 
@@ -148,7 +162,7 @@ const DrawerStack = DrawerNavigator(
     Leaderboard: drawerStackNav(Leaderboard, 'Leaderboard'),
     Results: drawerStackNav(resultsTabStack, 'Results'),
     Photos: drawerStackNav(Photos, 'Edit Photos'),
-    Tags: drawerStackNav(Tags, 'AlgoTags'),
+    Tags: drawerStackNav(tagsTabStack, 'AlgoTags'),
     Account: drawerStackNav(Account, 'Edit Info'),
     Settings: drawerStackNav(Settings, 'Edit Settings'),
   },

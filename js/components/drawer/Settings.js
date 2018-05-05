@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, Button, View, Image } from 'react-native';
 
-import X from './../globals/buttons/x';
+import X from './../globals/buttons/X';
 
 class Settings extends Component {
   constructor() {
@@ -15,8 +15,7 @@ class Settings extends Component {
         <Image
           style={{width: 41, height: 30, tintColor: 'white'}}
           source={require('./../../icons/png-64px/gears_64px.png')}
-          > 
-        </Image>
+          />
       ),
     }
   };

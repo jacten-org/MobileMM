@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Text, View, Image, ScrollView } from 'react-native';
 
 import LeaderboardItem from './LeaderboardItem';
-import X from './../../globals/buttons/x';
+import X from './../../globals/buttons/X';
 
 class Leaderboard extends Component {
   constructor() {
@@ -18,8 +18,7 @@ class Leaderboard extends Component {
         <Image
           style={{width: 30, height: 30, tintColor: 'white'}}
           source={require('./../../../icons/png-64px/trophy_64px.png')}
-          > 
-        </Image>
+          />
       ),
     }
   };

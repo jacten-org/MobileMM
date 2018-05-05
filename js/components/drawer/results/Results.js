@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import actions from '../../../redux/actions/follows_page_actions';
-import X from '../../globals/buttons/x';
+import X from '../../globals/buttons/X';
 import ResultsItem from './ResultsItem';
 
 class Results extends Component {
@@ -25,11 +25,12 @@ class Results extends Component {
         <Image
           style={{width: 30, height: 30, tintColor: 'white'}}
           source={require('../../../icons/png-64px/scope_64px.png')}
-          > 
-        </Image>
+          />
       ),
     }
   };
+
+
 
   _keyExtractor = (item, index) => 'a' + item.id;
 
@@ -53,12 +54,10 @@ class Results extends Component {
   );
 
   render() {
-
     let route = this.props.navigation.state.routeName;
-
     let routeData = route === 'Starred'
       ? this.props.starred
-        : this.props.all
+      : this.props.all
     return (
       <FlatList 
         style={{backgroundColor: route === 'Starred' ? '#c0d6e4' : '#fb9692', flex: 1}}

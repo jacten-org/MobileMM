@@ -36,21 +36,6 @@ export default {
       }
     }
   },
-  updateTagsData(type, tags) {
-    return async (dispatch, getState) => {
-      try {
-        const { id } = getState().accountData;
-        await axios
-          .put(`${REST_SERVER_URL}/api/tags/userAndPreferenceTags/${type}/${id}`, tags)
-        dispatch({
-          type: 'USER_TAGS_UPDATED',
-          payload: {tags: tags, type: type}
-        });
-      } catch (err) {
-        console.error
-      }
-    }
-  },
   uploadPhoto(formData) {
     return async (dispatch, getState) => {
       const { id } = getState().accountData;
