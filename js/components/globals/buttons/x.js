@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image, TouchableOpacity, Text, StyleSheet, View, Alert } from 'react-native';
 
 import actions from '../../../redux/actions/tags_actions';
 
@@ -14,10 +14,21 @@ class X extends Component {
     if (!this.props.savedStatus && this.props.tags) {
       this.props.saveTags()
     }
-    this.props.onTap();
+    if (this.props.length < 6) {
+      Alert.alert(
+        'Not Enough Tags!',
+        'Please select 3 Tags for you and for your match',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+      )
+    } else {
+      this.props.onTap();
+    }
   }
 
   render() {
+    console.log(this.props.tags)
     return(
       <TouchableOpacity onPress={()=> {this.handleTap()}}>
         {
@@ -61,6 +72,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     savedStatus: state.savedStatus,
+    length: state.tags.user.length + state.tags.pref.length,
   };
 }
 
