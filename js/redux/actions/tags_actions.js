@@ -26,9 +26,6 @@ export default {
         await axios
           .put(`${REST_SERVER_URL}/api/tags/saveTags/${id}`, tags)
         dispatch({
-          type: 'TAGS_SAVED',
-        });
-        dispatch({
           type: 'SAVED_CHANGES',
         });
       } catch (err) {

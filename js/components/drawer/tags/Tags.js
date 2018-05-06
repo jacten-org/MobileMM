@@ -27,20 +27,37 @@ class Tags extends Component {
     }
   };
 
+  handleTagTap = (route, selected, tag) => {
+    let type = route === 'You' ? 'user' : 'pref';
+    let tagArray = this.props.tags[type];
+    if (tagArray.length === 3) {
+      tagArray.pop();
+    }
+    tagArray.push(tag)
+    this.props.updateTagsState(type, tagArray)
+  }
+
   render() {
+
     let route = this.props.navigation.state.routeName;
+    let {height, width} = Dimensions.get('window');
     let tagsData = route === 'You'
       ? this.props.tags.user
       : this.props.tags.pref;
-    let {height, width} = Dimensions.get('window');
-    console.log(height, width)
+    let colorRoute = route === 'You' 
+      ? '#c0d6e4' 
+      : '#fb9692';
+
     return (
-      <View style={[styles.container, {backgroundColor: route !== 'You' ? '#c0d6e4' : '#fb9692'}]}>
-        <SelectedHolder
+      <View style={[styles.container, {backgroundColor: colorRoute}]}>
+        {/* <SelectedHolder
           tags={tagsData}
-          />
-        <ScrollView style={styles.container}>
-          <View style={styles.scroll}>
+          /> */}
+        <ScrollView style={styles.container} contentContainerStyle={{justifyContent: 'center'}}>
+          <View style={[styles.scroll, {justifyContent: 'center', backgroundColor: colorRoute, marginBottom: 15}]}>
+            <Text style={styles.text}>
+              {route === 'You' ? 'Pick 3 Tags to Describe Yourself!' : 'Pick 3 Tags to Describe Your Mate!'}
+            </Text>
           {
             tagsArray.map((tag) => {
               let selected = tagsData.includes(tag)
@@ -48,7 +65,8 @@ class Tags extends Component {
                 text={tag} 
                 key={tag}
                 selected={selected} 
-                onTap={() => this.addToTagArray(tag)} 
+                color={colorRoute}
+                onTap={() => this.handleTagTap(route, selected, tag)} 
                 />
             })
           }
@@ -67,7 +85,14 @@ const styles = StyleSheet.create({
   scroll: {
     flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    backgroundColor: 'white',
+  },
+  text: {
+    color: 'black',
+    margin: 20, 
+    fontSize: 26, 
+    textAlign: 'center', 
   }
 })
 
