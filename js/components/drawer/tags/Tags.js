@@ -30,10 +30,16 @@ class Tags extends Component {
   handleTagTap = (route, selected, tag) => {
     let type = route === 'You' ? 'user' : 'pref';
     let tagArray = this.props.tags[type];
-    if (tagArray.length === 3) {
-      tagArray.pop();
+    if (selected) {
+      let index = tagArray.indexOf(tag);
+      tagArray.splice(index, 1);
+    } else {
+      if (tagArray.length === 3) {
+        tagArray.pop();
+      }
+      tagArray.push(tag)
     }
-    tagArray.push(tag)
+    console.log(selected, type, tagArray)
     this.props.updateTagsState(type, tagArray)
   }
 
