@@ -21,17 +21,16 @@ export default {
   saveTags() {
     return async (dispatch, getState) => {
       try {
-        console.log('in Save Tags!!!')
-        // const { id } = getState().accountData;
-        // const { tags } = getState();
-        // await axios
-        //   .put(`${REST_SERVER_URL}/api/tags/saveTags/${id}`, tags)
-        // dispatch({
-        //   type: 'TAGS_SAVED',
-        // });
-        // dispatch({
-        //   type: 'SAVED_CHANGES',
-        // });
+        const { id } = getState().accountData;
+        const { tags } = getState();
+        await axios
+          .put(`${REST_SERVER_URL}/api/tags/saveTags/${id}`, tags)
+        dispatch({
+          type: 'TAGS_SAVED',
+        });
+        dispatch({
+          type: 'SAVED_CHANGES',
+        });
       } catch (err) {
         console.error
       }
