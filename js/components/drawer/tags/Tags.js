@@ -39,7 +39,6 @@ class Tags extends Component {
       }
       tagArray.push(tag)
     }
-    console.log(selected, type, tagArray)
     this.props.updateTagsState(type, tagArray)
   }
 
@@ -56,9 +55,9 @@ class Tags extends Component {
 
     return (
       <View style={[styles.container, {backgroundColor: colorRoute}]}>
-        {/* <SelectedHolder
+        <SelectedHolder
           tags={tagsData}
-          /> */}
+          />
         <ScrollView style={styles.container} contentContainerStyle={{justifyContent: 'center'}}>
           <View style={[styles.scroll, {justifyContent: 'center', backgroundColor: colorRoute, marginBottom: 15}]}>
             <Text style={styles.text}>
