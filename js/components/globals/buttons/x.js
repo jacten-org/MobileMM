@@ -14,7 +14,7 @@ class X extends Component {
     if (!this.props.savedStatus && this.props.tags) {
       this.props.saveTags()
     }
-    if (this.props.length < 6) {
+    if (this.props.tags && this.props.length < 6) {
       Alert.alert(
         'Not Enough Tags!',
         'Please select 3 Tags for you and for your match',

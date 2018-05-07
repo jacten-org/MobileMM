@@ -147,9 +147,11 @@ const MainStack = StackNavigator({
 
 const AuthStack = StackNavigator(
   {
-    Login: Login,
-  }
-)
+    Login: {
+    screen: Login,
+    navigationOptions: stdHeaderNavOptions('Login')
+  },
+})
 
 const DrawerStack = DrawerNavigator(
   {

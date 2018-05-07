@@ -11,7 +11,7 @@ const TagsItem = ({ text, color, selected, onTap }) => {
           : [styles.container, styles.default]
         }>
       <View>
-        <Text style={styles.text}>
+        <Text style={[styles.text, selected && {color: 'white'}]}>
           {text}
         </Text>
       </View>
@@ -21,29 +21,29 @@ const TagsItem = ({ text, color, selected, onTap }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get('window').width / 2 - 25,
-    height: 80,
-    margin: 10,
+    width: Dimensions.get('window').width / 2 - 30,
+    margin: 5,
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
+    // borderRadius: 20,
 
   },
   selected: {
-    backgroundColor: 'gold'
+    backgroundColor: '#afd7b4',
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
+    shadowColor: 'grey',
+    shadowOffset: { height: 3, width: 3 },
   },
   default: {
     backgroundColor: 'white',
-    shadowOpacity: 0.6,
-    shadowRadius: 5,
-    shadowColor: 'black',
-    shadowOffset: { height: 3, width: 3 },
   },
   text: {
-    fontSize: 19,
-    fontWeight: '400',
+    fontSize: 17,
+    fontWeight: '300',
     color: 'black',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 });
 

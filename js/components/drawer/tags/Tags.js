@@ -45,7 +45,7 @@ class Tags extends Component {
   render() {
 
     let route = this.props.navigation.state.routeName;
-    let {height, width} = Dimensions.get('window');
+    let { height, width } = Dimensions.get('window');
     let tagsData = route === 'You'
       ? this.props.tags.user
       : this.props.tags.pref;
@@ -57,12 +57,10 @@ class Tags extends Component {
       <View style={[styles.container, {backgroundColor: colorRoute}]}>
         <SelectedHolder
           tags={tagsData}
+          route={route}
           />
         <ScrollView style={styles.container} contentContainerStyle={{justifyContent: 'center'}}>
           <View style={[styles.scroll, {justifyContent: 'center', backgroundColor: colorRoute, marginBottom: 15}]}>
-            <Text style={styles.text}>
-              {route === 'You' ? 'Pick 3 Tags to Describe Yourself!' : 'Pick 3 Tags to Describe Your Mate!'}
-            </Text>
           {
             tagsArray.map((tag) => {
               let selected = tagsData.includes(tag)
