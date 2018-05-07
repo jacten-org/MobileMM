@@ -49,14 +49,12 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <TextInput
-          keyboardType='email-address'
           style={styles.textInput}
           placeholder="Username"
           autoCapitalize='none'
           onChangeText={(username) => this.setState({username})}
           />
         <TextInput
-          keyboardType='email-address'
           style={styles.textInput}
           placeholder="Password"
           secureTextEntry={true}

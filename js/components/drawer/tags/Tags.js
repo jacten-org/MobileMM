@@ -28,6 +28,7 @@ class Tags extends Component {
   };
 
   handleTagTap = (route, selected, tag) => {
+    console.log('inhandletagtap', route, selected, tag)
     let type = route === 'You' ? 'user' : 'pref';
     let tagArray = this.props.tags[type];
     if (selected) {
@@ -58,6 +59,7 @@ class Tags extends Component {
         <SelectedHolder
           tags={tagsData}
           route={route}
+          onTap={this.handleTagTap}
           />
         <ScrollView style={styles.container} contentContainerStyle={{justifyContent: 'center'}}>
           <View style={[styles.scroll, {justifyContent: 'center', backgroundColor: colorRoute, marginBottom: 15}]}>
