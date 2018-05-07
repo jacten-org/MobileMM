@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import {
   View,
   TouchableOpacity,
@@ -7,6 +8,8 @@ import {
   StyleSheet,
   Text
 } from 'react-native';
+
+import { REST_SERVER_URL } from 'react-native-dotenv'; 
 
 class Login extends React.Component {
   constructor() {
@@ -22,6 +25,26 @@ class Login extends React.Component {
     title: 'Login Page',
   };
 
+  handleLogin = async (e) => {
+    const { username, password } = this.state;
+    const body = {
+      username,
+      password
+    };
+    try {
+      const data = await axios.post(`${REST_SERVER_URL}/api/auth/login`, body);
+      await AsyncStorage.setItem('token', data.data.token);
+      if (!!data) {
+        this.props.navigation.navigate('Main');
+      } else {
+        this.setState({ username: '' });
+        this.setState({ password: '' });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };  
+
   render() {
     console.log(this.state)
     return (
@@ -29,6 +52,7 @@ class Login extends React.Component {
         <TextInput
           style={styles.textInput}
           placeholder="Username"
+          autoCapitalize='none'
           onChangeText={(username) => this.setState({username})}
           />
         <TextInput
@@ -37,7 +61,7 @@ class Login extends React.Component {
           secureTextEntry={true}
           onChangeText={(password) => this.setState({password})}
           />
-        <TouchableOpacity style={styles.button} onPress={this._signInAsync}>
+        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
           <Text style={{color: 'white', fontSize: 18}}>
             Login
           </Text>
@@ -45,15 +69,6 @@ class Login extends React.Component {
       </View>
     );
   }
-
-  _signInAsync = async () => {
-    try {
-      await AsyncStorage.setItem('userToken', 'abc');
-      this.props.navigation.navigate('Main');
-    } catch (error) {
-      console.error
-    }
-  };
 }
 
 const styles = StyleSheet.create({

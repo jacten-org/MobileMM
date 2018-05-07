@@ -1,5 +1,7 @@
 import axios from 'axios';
+import AsyncStorage from 'react-native';
 import jwtDecode from 'jwt-decode';
+
 
 import turnBirthdayIntoAge from '../../utils/turnBirthdayIntoAge';
 
@@ -10,9 +12,9 @@ export default {
   initialize(navigate) {
     return async (dispatch, getState) => {
       try {
-        let id = 29;
-        console.log(REST_SERVER_URL, id)
-        // const { id } = await jwtDecode(localStorage.token);
+        const id = 28;
+        const token = await AsyncStorage.getItem('token');
+        // const { id } = await jwtDecode(token);
         const { data } = await axios.get(
           `${REST_SERVER_URL}/api/initialize/${id}`
         );
