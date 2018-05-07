@@ -35,7 +35,7 @@ class Login extends React.Component {
       const data = await axios.post(`${REST_SERVER_URL}/api/auth/login`, body);
       await AsyncStorage.setItem('token', data.data.token);
       if (!!data) {
-        this.props.navigation.navigate('Main');
+        this.props.navigation.navigate('AuthLoading');
       } else {
         this.setState({ username: '' });
         this.setState({ password: '' });
@@ -46,16 +46,17 @@ class Login extends React.Component {
   };  
 
   render() {
-    console.log(this.state)
     return (
       <View style={styles.container}>
         <TextInput
+          keyboardType='email-address'
           style={styles.textInput}
           placeholder="Username"
           autoCapitalize='none'
           onChangeText={(username) => this.setState({username})}
           />
         <TextInput
+          keyboardType='email-address'
           style={styles.textInput}
           placeholder="Password"
           secureTextEntry={true}
@@ -66,6 +67,8 @@ class Login extends React.Component {
             Login
           </Text>
         </TouchableOpacity>
+        <View style={{height: 100}}>
+        </View>
       </View>
     );
   }

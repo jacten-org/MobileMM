@@ -1,23 +1,23 @@
 import axios from 'axios';
-import AsyncStorage from 'react-native';
+import { AsyncStorage } from 'react-native';
 import jwtDecode from 'jwt-decode';
 
 
 import turnBirthdayIntoAge from '../../utils/turnBirthdayIntoAge';
 
-import { REST_SERVER_URL, REDIS_SERVER_URL } from 'react-native-dotenv'; 
+import { REST_SERVER_URL, REDIS_SERVER_URL } from 'react-native-dotenv';
 
 
 export default {
   initialize(navigate) {
     return async (dispatch, getState) => {
       try {
-        const id = 28;
         const token = await AsyncStorage.getItem('token');
-        // const { id } = await jwtDecode(token);
+        const { id } = await jwtDecode(token);
         const { data } = await axios.get(
           `${REST_SERVER_URL}/api/initialize/${id}`
         );
+        console.log('recieved data')
         const redisData = await axios.get(
           `${REDIS_SERVER_URL}/redis/leaderboard/fetchLeaderboardAndRank/${id}`
         );
