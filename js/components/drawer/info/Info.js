@@ -9,6 +9,10 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import actions from '../../../redux/actions/info_actions';
 
 import X from './../../globals/buttons/X';
 import GenderBox from './GenderBox';
@@ -20,12 +24,11 @@ class Info extends Component {
     this.state = {
       bio: '',
       zip: '',
-      dob: '',
-      gender: '',
-      genderpref: '',
       bioCharRemaining: 140,
-      height: 100,
+      height: 80,
       tempHeight: 0,
+      gender: 0,
+      pref: 0,
     }
   }
 
@@ -41,8 +44,13 @@ class Info extends Component {
     }
   };
 
+  handleGenderChange = (state, genderNum) => {
+    console.log('help,', state, genderNum)
+    this.setState({ [state]: genderNum });
+  }
+
   updateSize = (height) => {
-    let adjustedHeight = height > 100 ? height : 100;
+    let adjustedHeight = height > 80 ? height : 80;
     this.setState({
       height: adjustedHeight 
     });
@@ -52,13 +60,29 @@ class Info extends Component {
     Keyboard.dismiss();
     this.setState({
       tempHeight: height,
-      height: 100,
+      height: 80,
     })
   }
 
-  render() {
+  componentWillMount = () => {
+    this.setState({
+      zip: this.props.zip + '',
+      bio: this.props.bio,
+      gender: this.props.gender,
+      pref: this.props.pref,
+      bioCharRemaining: 140 - this.props.bio.length,
+    })
+  }
 
-    console.log(this.state.height, this.state.tempHeight)
+  componentWillUnmount = () => {
+    const { bio, zip, gender, pref } = this.state;
+    const location = zip;
+    const preference = pref;
+    this.props.updateBioData({ bio, location, gender, preference });
+  }
+
+  render() {
+    console.log(this.state.gender, this.state.pref)
 
     const {height, tempHeight} = this.state;
 
@@ -95,7 +119,6 @@ class Info extends Component {
                     bioCharRemaining: 140 - bio.length,
                     })
                   }
-                value={this.state.bio}
                 />
               <Text style={[styles.counter, this.state.bioCharRemaining === 0 && {color: 'red'}]}>
                 {this.state.bioCharRemaining}
@@ -107,6 +130,7 @@ class Info extends Component {
               ZIP Code
             </Text>
             <TextInput
+              editable={true}
               clearTextOnFocus={true}
               keyboardType='numeric'
               style={[styles.textInput, styles.zip]}
@@ -120,13 +144,21 @@ class Info extends Component {
             <Text style={styles.headerText}>
               Your Gender
             </Text>
-          <GenderBox/>
+            <GenderBox
+              handleGenderChange={this.handleGenderChange}
+              gender={this.state.gender}
+              type='gender'
+              />
           </View>
           <View style={styles.box}>
             <Text style={styles.headerText}>
               Gender(s) of your Mate(s)
             </Text>
-            <GenderBox/>
+            <GenderBox
+              handleGenderChange={this.handleGenderChange}
+              gender={this.state.pref}
+              type='pref'
+              />
           </View>
           <View style={{height:100}}/>
         </View>
@@ -161,7 +193,7 @@ const styles = StyleSheet.create({
   textInput: {
     width: 300, 
     backgroundColor: 'lightgrey',
-    height: 30,
+    height: 60,
     margin: 3, 
     padding: 3, 
     borderRadius: 5,
@@ -175,11 +207,26 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   zip: {
+    color: 'black',
     textAlign: 'center',
     letterSpacing: 30, 
-    fontSize: 20,
+    fontSize: 26,
     paddingLeft: 20,
   },
 })
 
-export default Info;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    updateBioData: actions.updateBioData,
+  }, dispatch);
+}
+
+const mapStateToProps = ({ bioData }) => {
+  return {
+    zip: bioData.location || "",
+    bio: bioData.bio || "",
+    gender: bioData.gender || "",
+    pref: bioData.preference || "",
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Info);

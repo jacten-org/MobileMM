@@ -15,10 +15,10 @@ import initialize from '../../redux/actions/initialize_actions';
 class AuthLoading extends Component {
   constructor(props) {
     super(props);
-    this._bootstrapAsync();
+    this.bootstrapAsync();
   }
 
-  _bootstrapAsync = async () => {
+  bootstrapAsync = async () => {
     const token = await AsyncStorage.getItem('token');
     if (!token) {
       this.props.navigation.navigate('Auth');

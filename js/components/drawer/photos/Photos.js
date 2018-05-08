@@ -16,7 +16,7 @@ import ModalButton from '../../globals/buttons/ModalButton';
 import X from '../../globals/buttons/X';
 import PhotosItem from './PhotosItem';
 import ImagePicker from 'react-native-image-picker';
-import actions from '../../../redux/actions/account_page_actions';
+import actions from '../../../redux/actions/info_actions';
 
 
 class Photos extends Component {

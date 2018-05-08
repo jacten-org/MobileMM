@@ -28,7 +28,6 @@ class X extends Component {
   }
 
   render() {
-    console.log(this.props.tags)
     return(
       <TouchableOpacity onPress={()=> {this.handleTap()}}>
         {

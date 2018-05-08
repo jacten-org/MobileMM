@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 
-import { REST_SERVER_URL } from 'react-native-dotenv'; 
+import { REST_SERVER_URL } from 'react-native-dotenv';
 
 class Login extends React.Component {
   constructor() {

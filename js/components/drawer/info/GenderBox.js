@@ -1,38 +1,97 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 
-const GenderBox = (props) => {
-  return (
-    <View style={styles.container}>
-      <TouchableHighlight 
-        style={styles.button}
-        onPress={()=>{console.log('butt')}}
-        underlayColor='lightgreen'
-        >
-        <Text>
-          female
-        </Text>
-      </TouchableHighlight>
-      <TouchableHighlight 
-        style={styles.button}
-        onPress={()=>{console.log('butt')}}
-        underlayColor='lightgreen'
-        >
-        <Text>
-          male
-        </Text>
-      </TouchableHighlight>
-      <TouchableHighlight 
-        style={styles.button}
-        onPress={()=>{console.log('butt')}}
-        underlayColor='lightgreen'
-        >
-        <Text>
-          other
-        </Text>
-      </TouchableHighlight>
-    </View>
-  )
+class GenderBox extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      genderState: [],
+    };
+  }
+
+  genderToNumberObject = {
+    m: 1,
+    f: 2,
+    o: 3,
+    fm: 4,
+    mo: 5,
+    fo: 6,
+    fmo: 7,
+  }
+
+  numberToGenderObject = {
+    1: ['m'],
+    2: ['f'],
+    3: ['o'],
+    4: ['f','m'],
+    5: ['m','o'],
+    6: ['f','o'],
+    7: ['f','m','o']
+  }
+
+  convertGenderStateToNumber = (arrayOfGender) => {
+    let genderString = arrayOfGender.join('')
+    return this.genderToNumberObject[genderString]
+  }
+
+  onGenderClick = (gender) => {
+    let { genderState } = this.state;
+    if (genderState.includes(gender)) {
+      genderState.splice(genderState.indexOf(gender), 1);
+    } else {
+    genderState.push(gender)
+    genderState.sort()
+    }
+    let newGenderState = (this.props.type !== 'gender') ? genderState : [gender];
+    this.setState({
+      genderState: newGenderState
+    })
+    let genderNumber = this.convertGenderStateToNumber(newGenderState);
+    this.props.handleGenderChange(this.props.type, genderNumber);
+  }
+
+  componentDidMount = () => {
+    this.props.gender &&
+    this.setState({
+      genderState: this.numberToGenderObject[this.props.gender],
+    })
+  }
+
+  render() {
+    console.log(this.state.genderState)
+    return (
+      <View style={styles.container}>
+        <TouchableHighlight 
+          style={[styles.button, this.state.genderState.includes('f') ? styles.selected : styles.default]}
+          onPress={() => this.onGenderClick('f')} 
+          underlayColor='lightgreen'
+          >
+          <Text>
+            female
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight 
+          style={[styles.button, this.state.genderState.includes('m') ? styles.selected : styles.default]}
+          onPress={() => this.onGenderClick('m')} 
+          underlayColor='lightgreen'
+          >
+          <Text>
+            male
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={[styles.button, this.state.genderState.includes('o') ? styles.selected : styles.default]}
+          onPress={() => this.onGenderClick('o')} 
+          underlayColor='lightgreen'
+          >
+          <Text>
+            other
+          </Text>
+        </TouchableHighlight>
+      </View>
+    )
+  }
 };
 
 const styles = StyleSheet.create({
@@ -48,6 +107,12 @@ const styles = StyleSheet.create({
   },
   selected: {
     backgroundColor: '#afd7b4',
+  },
+  default: {
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    shadowColor: 'black',
+    shadowOffset: { height: 2, width: 2 },
   },
   container: {
     width: 310,

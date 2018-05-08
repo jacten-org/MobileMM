@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { REST_SERVER_URL, S3_SERVER_URL } from 'react-native-dotenv';
-
+ 
 export default {
   updateAccountData(accountData) {
     return async (dispatch, getState) => {
@@ -22,6 +22,7 @@ export default {
   updateBioData(bioData) {
     return async (dispatch, getState) => {
       try {
+        console.log('bioData: ', bioData)
         const { id } = await getState().accountData
         bioData.id = id
         await axios
