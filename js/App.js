@@ -22,7 +22,7 @@ import Leaderboard from './components/drawer/leaderboard/Leaderboard';
 import Results from './components/drawer/results/Results';
 import Photos from './components/drawer/photos/Photos';
 import Tags from './components/drawer/tags/Tags';
-import Account from './components/drawer/Account';
+import Info from './components/drawer/info/Info';
 import Content from './components/drawer/Content';
 import Settings from './components/drawer/Settings';
 
@@ -165,7 +165,7 @@ const DrawerStack = DrawerNavigator(
     Results: drawerStackNav(resultsTabStack, 'Results'),
     Photos: drawerStackNav(Photos, 'Edit Photos'),
     Tags: drawerStackNav(tagsTabStack, 'AlgoTags'),
-    Account: drawerStackNav(Account, 'Edit Info'),
+    Info: drawerStackNav(Info, 'Edit Info'),
     Settings: drawerStackNav(Settings, 'Edit Settings'),
   },
   {

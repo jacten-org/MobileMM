@@ -10,9 +10,10 @@ import {
   Keyboard,
 } from 'react-native';
 
-import X from './../globals/buttons/X';
+import X from './../../globals/buttons/X';
+import GenderBox from './GenderBox';
 
-class Account extends Component {
+class Info extends Component {
   constructor(props) {
     super(props);
 
@@ -22,7 +23,9 @@ class Account extends Component {
       dob: '',
       gender: '',
       genderpref: '',
-      bioCharRemaining: 100,
+      bioCharRemaining: 140,
+      height: 100,
+      tempHeight: 0,
     }
   }
 
@@ -32,41 +35,79 @@ class Account extends Component {
     drawerIcon: () => (
       <Image
         style={{width: 30, height: 30, tintColor: 'white'}}
-        source={require('./../../icons/png-64px/profile-female_64px.png')}
+        source={require('./../../../icons/png-64px/profile-female_64px.png')}
         /> 
     ),
     }
   };
 
+  updateSize = (height) => {
+    let adjustedHeight = height > 100 ? height : 100;
+    this.setState({
+      height: adjustedHeight 
+    });
+  }
+
+  tapOutsideInput = (height) => {
+    Keyboard.dismiss();
+    this.setState({
+      tempHeight: height,
+      height: 100,
+    })
+  }
+
   render() {
+
+    console.log(this.state.height, this.state.tempHeight)
+
+    const {height, tempHeight} = this.state;
+
+    let newHeight = {
+      height
+    }
+
+    let newContainerHeight = {
+      height: height + 28
+    }
+
     return (
       <TouchableWithoutFeedback
         style={{flex: 1}} 
-        onPress={Keyboard.dismiss}
+        onPress={() => this.tapOutsideInput(height)}
         >
         <View style={styles.container}>
           <View style={styles.box}>
             <Text style={styles.headerText}>
-              Bio {this.state.bioCharRemaining}
+              Bio
             </Text>
-            <TextInput
-              style={[styles.textInput, { height: 80 }]}
-              autoCapitalize='none'
-              multiline={true}
-              maxLength={100}
-              onChangeText={(bio) => this.setState({
-                  bio: bio, 
-                  bioCharRemaining: 100 - bio.length,
-                  })
-                }
-              value={this.state.bio}
-              />
+            <View style={[styles.bioContainer, newContainerHeight]}>
+              <TextInput
+                onFocus={() => this.updateSize(tempHeight)}
+                style={[newHeight]}
+                editable={true}
+                value={this.state.bio}
+                onContentSizeChange={(e) => this.updateSize(e.nativeEvent.contentSize.height)}
+                autoCapitalize='none'
+                multiline={true}
+                maxLength={140}
+                onChangeText={(bio) => this.setState({
+                    bio: bio, 
+                    bioCharRemaining: 140 - bio.length,
+                    })
+                  }
+                value={this.state.bio}
+                />
+              <Text style={[styles.counter, this.state.bioCharRemaining === 0 && {color: 'red'}]}>
+                {this.state.bioCharRemaining}
+              </Text>
+            </View>
           </View>
           <View style={styles.box}>
             <Text style={styles.headerText}>
               ZIP Code
             </Text>
             <TextInput
+              clearTextOnFocus={true}
               keyboardType='numeric'
               style={[styles.textInput, styles.zip]}
               maxLength={5}
@@ -77,23 +118,15 @@ class Account extends Component {
           </View>
           <View style={styles.box}>
             <Text style={styles.headerText}>
-              Gender
+              Your Gender
             </Text>
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize='none'
-              onChangeText={(bio) => this.setState({bio})}
-              />
+          <GenderBox/>
           </View>
           <View style={styles.box}>
             <Text style={styles.headerText}>
-              Gender Preferences
+              Gender(s) of your Mate(s)
             </Text>
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize='none'
-              onChangeText={(bio) => this.setState({bio})}
-              />
+            <GenderBox/>
           </View>
           <View style={{height:100}}/>
         </View>
@@ -110,8 +143,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   headerText: {
+    textAlign: 'center',
     fontSize: 20,
     margin: 3, 
+  },
+  counter: {
+    textAlign: 'right',
+    fontSize: 13,
+    padding: 3,
   },
   container: {
     flex: 1,
@@ -127,13 +166,20 @@ const styles = StyleSheet.create({
     padding: 3, 
     borderRadius: 5,
   },
+  bioContainer: {
+    height: 100,
+    width: 300, 
+    backgroundColor: 'lightgrey',
+    margin: 3, 
+    padding: 3, 
+    borderRadius: 5,
+  },
   zip: {
     textAlign: 'center',
     letterSpacing: 30, 
     fontSize: 20,
     paddingLeft: 20,
-
-  }
+  },
 })
 
-export default Account;
+export default Info;
