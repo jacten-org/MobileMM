@@ -61,8 +61,11 @@ class Tags extends Component {
           route={route}
           onTap={this.handleTagTap}
           />
-        <ScrollView style={styles.container} contentContainerStyle={{justifyContent: 'center'}}>
-          <View style={[styles.scroll, {justifyContent: 'center', backgroundColor: colorRoute, marginBottom: 15}]}>
+        <ScrollView 
+          style={styles.container} 
+          contentContainerStyle={{justifyContent: 'center'}}
+          >
+          <View style={[styles.scroll, { backgroundColor: colorRoute }]}>
           {
             tagsArray.map((tag) => {
               let selected = tagsData.includes(tag)
@@ -88,6 +91,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scroll: {
+    marginBottom: 15,
+    justifyContent: 'center', 
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',

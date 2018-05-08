@@ -6,8 +6,11 @@ import {
   AsyncStorage,
   TextInput,
   StyleSheet,
-  Text
+  Text,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
 } from 'react-native';
+
 
 import { REST_SERVER_URL } from 'react-native-dotenv'; 
 
@@ -47,27 +50,30 @@ class Login extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Username"
-          autoCapitalize='none'
-          onChangeText={(username) => this.setState({username})}
-          />
-        <TextInput
-          style={styles.textInput}
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={(password) => this.setState({password})}
-          />
-        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-          <Text style={{color: 'white', fontSize: 18}}>
-            Login
-          </Text>
-        </TouchableOpacity>
-        <View style={{height: 100}}>
-        </View>
-      </View>
+        <KeyboardAvoidingView
+          behavior="padding"
+          style={styles.container}
+          enabled
+          >
+          <TextInput
+          
+            style={styles.textInput}
+            placeholder="Username"
+            autoCapitalize='none'
+            onChangeText={(username) => this.setState({username})}
+            />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Password"
+            secureTextEntry={true}
+            onChangeText={(password) => this.setState({password})}
+            />
+          <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+            <Text style={{color: 'white', fontSize: 18}}>
+              Login
+            </Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
     );
   }
 }

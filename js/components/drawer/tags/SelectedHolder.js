@@ -7,7 +7,7 @@ import { Text, Button, View, Image, StyleSheet, TouchableOpacity } from 'react-n
 const SelectedHolder = ({ tags, route, onTap }) => { 
 
   const shadow =  {
-    shadowOpacity: 0.6,
+    shadowOpacity: 0.4,
     shadowRadius: 2,
     shadowColor: 'grey',
     shadowOffset: { height: 3, width: 3 },
