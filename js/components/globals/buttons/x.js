@@ -31,7 +31,7 @@ class X extends Component {
     return(
       <TouchableOpacity onPress={()=> {this.handleTap()}}>
         {
-          this.props.savedStatus ?
+          (this.props.savedStatus || this.props.length < 6) ?
           <Image
             style={styles.x}
             source={require('./../../../icons/png-64px/whiteClose.png')}
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
   done: {
     color: 'white',
     margin: 10,
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 20,
+    fontWeight: '600',
 
   },
 });

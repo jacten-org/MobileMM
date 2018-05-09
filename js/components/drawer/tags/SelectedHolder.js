@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, Button, View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 
 
   // const starColor = starred ? '#f1c40f' : 'white';
@@ -21,30 +21,34 @@ const SelectedHolder = ({ tags, route, onTap }) => {
         </Text>
       </View>
       <View style={styles.selectedBox}>
-        <TouchableOpacity 
-          style={[styles.tag, tags[0] && shadow]}
+        <TouchableHighlight
+          underlayColor='#b7dbbb'
+          style={[styles.tag, !tags[0] && shadow]}
           onPress={() => {tags[0] && onTap(route, true, tags[0])}}
           >
           <Text style={styles.text}>
             {tags[0]}
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={[styles.tag, tags[1] && shadow]}
+        </TouchableHighlight>
+        <TouchableHighlight 
+          underlayColor='#b7dbbb'
+          style={[styles.tag, !tags[1] && shadow]}
           onPress={() => {tags[1] && onTap(route, true, tags[1])}}
           >
           <Text style={styles.text}>
             {tags[1]}
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={[styles.tag, tags[2] && shadow]}
+        </TouchableHighlight>
+        <TouchableHighlight 
+          onPress={()=>{}}
+          underlayColor='#b7dbbb'
+          style={[styles.tag, !tags[2] && shadow]}
           onPress={() => {tags[2] && onTap(route, true, tags[2])}}
           >
           <Text style={styles.text}>
             {tags[2]}
           </Text>
-        </TouchableOpacity>
+        </TouchableHighlight>
       </View>
     </View>
   )
@@ -53,9 +57,9 @@ const SelectedHolder = ({ tags, route, onTap }) => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
-    marginTop: 10,
+    marginVertical: 10,
     flexDirection: 'column',
-    height: 100,
+    height: 110,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     backgroundColor: 'white',
@@ -68,14 +72,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#afd7b4',
-    borderWidth: 1,
-    borderColor: '#afd7b4',
-    padding: 1,
+    padding: 3,
     margin: 3,
   },
   text: {
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '700',
     color: 'white',
   }, 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { 
   Text, 
-  Button, 
   View, 
   Image,
   TextInput,
@@ -12,8 +11,10 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+
 import actions from '../../../redux/actions/info_actions';
 
+import Button from './../../globals/buttons/Button';
 import X from './../../globals/buttons/X';
 import GenderBox from './GenderBox';
 
@@ -160,7 +161,13 @@ class Info extends Component {
               type='pref'
               />
           </View>
-          <View style={{height:100}}/>
+          <View style={styles.box}>
+            <Button
+              right
+              title='Settings'
+              onPress={()=>{this.props.navigation.navigate('Settings')}}
+              />
+          </View>
         </View>
       </TouchableWithoutFeedback>
     )
