@@ -20,7 +20,7 @@ export default {
         console.error;
       }
     };
-  },
+  }, 
   postMatchmakerDecision(voteObject) {
     return async (dispatch, getState) => {
       const { id } = getState().accountData;

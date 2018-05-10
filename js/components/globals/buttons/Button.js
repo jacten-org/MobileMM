@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     height: 45,
   },
   text: {
-    fontSize: 23,
+    fontSize: 20,
     textAlign: 'center'
   },
   box: {

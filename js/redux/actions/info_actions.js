@@ -55,7 +55,7 @@ export default {
         console.error
       }
     }
-  },
+  }, 
   deletePhoto(key, photoId, targetPhoto, secondPhotoId) {
     return async (dispatch, getState) => {
       try {

@@ -9,7 +9,7 @@ import {
   Text,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-} from 'react-native'; 
+} from 'react-native';
 
 
 import { REST_SERVER_URL } from 'react-native-dotenv';

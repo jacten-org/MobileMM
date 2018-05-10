@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { 
   Text, 
   View, 
@@ -7,6 +6,8 @@ import {
   StyleSheet,
   TextInput,
 } from 'react-native';
+
+import X from '../../../globals/buttons/X';
 
 class Username extends Component {
   constructor() {
@@ -16,6 +17,18 @@ class Username extends Component {
 
     }
   }
+
+  static navigationOptions = ({navigation}) => {
+    return {
+      headerLeft: <X onTap={() => navigation.goBack()}/>,
+      drawerIcon: () => (
+        <Image
+          style={{width: 41, height: 30, tintColor: 'white'}}
+          source={require('./../../../../icons/png-64px/gears_64px.png')}
+          />
+      ),
+    }
+  };
 
   render () {
     return (

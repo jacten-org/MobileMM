@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Text, View, Image, StyleSheet } from 'react-native';
 import { DrawerItems, DrawerNavigation } from 'react-navigation';
 
-import Logout from './Logout';
 import Avatar from '../globals/avatar/Avatar';
 
 
@@ -52,7 +51,6 @@ const DrawerContent = (props) => (
   </View>
   <View style={styles.separator}/>
   <DrawerItems {...props}/>
-  <Logout {...props}/>
 </View>
 );
 

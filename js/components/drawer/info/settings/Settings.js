@@ -7,6 +7,7 @@ import {
   Keyboard,
   StyleSheet,
   TextInput,
+  AsyncStorage,
 } from 'react-native';
 
 import Button from './../../../globals/buttons/Button';
@@ -25,10 +26,14 @@ class Settings extends Component {
     }
   }
 
+  logout = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('Auth');
+  };
+
   static navigationOptions = ({navigation}) => {
     return {
-      headerRight: <X onTap={() => navigation.navigate('Main')}/>,
-      headerLeft: <X onTap={() => navigation.navigate('Info')}/>,
+      headerLeft: <X back onTap={() => navigation.navigate('Info')}/>,
       drawerIcon: () => (
         <Image
           style={{width: 41, height: 30, tintColor: 'white'}}
@@ -46,17 +51,17 @@ class Settings extends Component {
             <Text style={styles.headerText}>
               Account Settings:
             </Text>
-            <Button
+            <Button 
               right
               title='username'
               onPress={()=>{navigate('Username')}}
               />
-            <Button
+            <Button 
               right
               title='email'
               onPress={()=>{navigate('Email')}}
               />
-            <Button
+            <Button 
               right
               title='password'
               onPress={()=>{navigate('Password')}}
@@ -71,10 +76,16 @@ class Settings extends Component {
               title='firstname'
               onPress={()=>{navigate('Firstname')}}
               />
-            <Button
+            <Button 
               right
               title='lastname'
               onPress={()=>{navigate('Lastname')}}
+              />
+          </View>
+          <View style={styles.box}>
+            <Button
+              title='logout'
+              onPress={()=>{this.logout()}}
               />
           </View>
         </View>
@@ -91,9 +102,10 @@ const styles = StyleSheet.create({
     height: 200
   },
   headerText: {
+    
     textAlign: 'left',
-    fontSize: 20,
-    margin: 3, 
+    fontSize: 18,
+    margin: 5, 
   },
   container: {
     flex: 1, 

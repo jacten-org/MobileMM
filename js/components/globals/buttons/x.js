@@ -31,12 +31,21 @@ class X extends Component {
     return(
       <TouchableOpacity onPress={()=> {this.handleTap()}}>
         {
+          this.props.back ? 
+          <View style={styles.backBox}>
+            <Image
+              resizeMode={Image.resizeMode.stretch}
+              style={styles.back}
+              source={require('./../../../icons/arrowLeft.png')}
+              /> 
+          </View>
+          :
           (this.props.savedStatus || this.props.length < 6) ?
           <Image
             style={styles.x}
             source={require('./../../../icons/png-64px/whiteClose.png')}
-            > 
-          </Image> :
+            /> 
+          :
           <Text style={styles.done}>
             Done
           </Text>
@@ -58,7 +67,17 @@ const styles = StyleSheet.create({
     margin: 10,
     fontSize: 20,
     fontWeight: '600',
-
+  },
+  back: {
+    width: 11, 
+    height: 20, 
+    tintColor: 'white'
+  },
+  backBox: {
+    width: 30,
+    height: 30,
+    marginLeft: 10,
+    marginTop: 10,
   },
 });
 

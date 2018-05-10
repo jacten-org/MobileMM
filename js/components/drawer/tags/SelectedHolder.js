@@ -23,7 +23,7 @@ const SelectedHolder = ({ tags, route, onTap }) => {
       <View style={styles.selectedBox}>
         <TouchableHighlight
           underlayColor='#b7dbbb'
-          style={[styles.tag, !tags[0] && shadow]}
+          style={[styles.tag, tags[0] && shadow]}
           onPress={() => {tags[0] && onTap(route, true, tags[0])}}
           >
           <Text style={styles.text}>
@@ -32,7 +32,7 @@ const SelectedHolder = ({ tags, route, onTap }) => {
         </TouchableHighlight>
         <TouchableHighlight 
           underlayColor='#b7dbbb'
-          style={[styles.tag, !tags[1] && shadow]}
+          style={[styles.tag, tags[1] && shadow]}
           onPress={() => {tags[1] && onTap(route, true, tags[1])}}
           >
           <Text style={styles.text}>
@@ -42,7 +42,7 @@ const SelectedHolder = ({ tags, route, onTap }) => {
         <TouchableHighlight 
           onPress={()=>{}}
           underlayColor='#b7dbbb'
-          style={[styles.tag, !tags[2] && shadow]}
+          style={[styles.tag, tags[2] && shadow]}
           onPress={() => {tags[2] && onTap(route, true, tags[2])}}
           >
           <Text style={styles.text}>

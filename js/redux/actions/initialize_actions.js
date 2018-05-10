@@ -7,7 +7,7 @@ import turnBirthdayIntoAge from '../../utils/turnBirthdayIntoAge';
 
 import { REST_SERVER_URL, REDIS_SERVER_URL } from 'react-native-dotenv';
  
-
+ 
 export default {
   initialize(navigate) {
     return async (dispatch, getState) => {
