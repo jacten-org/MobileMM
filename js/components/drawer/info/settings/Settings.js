@@ -96,16 +96,15 @@ class Settings extends Component {
 
 const styles = StyleSheet.create({
   box: {
-    // flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     height: 200
   },
   headerText: {
-    
     textAlign: 'left',
     fontSize: 18,
-    margin: 5, 
+    marginLeft: 30, 
+    marginBottom: 7,
   },
   container: {
     flex: 1, 

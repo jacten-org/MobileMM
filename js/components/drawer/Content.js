@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     alignItems: 'center', 
+    justifyContent: 'center'
   },
   header: { 
     alignItems: 'center', 
     justifyContent: 'flex-end', 
-    flex: 4, 
     flexDirection: 'column',
     marginBottom: 20,
   },
@@ -46,7 +46,7 @@ const DrawerContent = (props) => (
       {props.realName} 
     </Text> 
     <Text style={styles.username}>
-      {props.userName} 
+      {props.userName}
     </Text> 
   </View>
   <View style={styles.separator}/>

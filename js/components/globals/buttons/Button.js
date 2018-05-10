@@ -1,32 +1,31 @@
 import React from 'react';
 import { Image, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
-const Button = ({ color, onPress, title, right}) => {
+const BannerButton = ({ color, onPress, title, right}) => {
   return(
     <View style={styles.container}>
-    <TouchableOpacity
-      style={styles.touchableO}
-      onPress={()=> {onPress()}}
-      >
-      <View style={styles.row}>
-        {/* <View style={styles.box}/> */}
-        <View style={styles.box}>
-          <Text style={[styles.text, {color: color || 'white'}]}>
-            {title}
-          </Text>
+      <TouchableOpacity
+        style={styles.touchableO}
+        onPress={()=> {onPress()}}
+        >
+        <View style={styles.row}>
+          <View style={styles.box}>
+            <Text style={[styles.text, {color: color || 'white'}]}>
+              {title}
+            </Text>
+          </View>
+          <View style={styles.boxRight}>
+          {
+            right &&
+            <Image
+              resizeMode={Image.resizeMode.stretch}
+              style={{ tintColor: 'white', height: 25, width: 15 }}
+              source={require('./../../../icons/arrowRight.png')}
+              /> 
+          }
+          </View>
         </View>
-        <View style={styles.boxRight}>
-        {
-          right &&
-          <Image
-            resizeMode={Image.resizeMode.stretch}
-            style={{ tintColor: 'white', height: 25, width: 15 }}
-            source={require('./../../../icons/arrowRight.png')}
-            /> 
-        }
-        </View>
-        </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -52,7 +51,6 @@ const styles = StyleSheet.create({
   touchableO: {
     flex: 1,
     backgroundColor: '#afd7b4',
-    // width: 300,
     height: 45,
   },
   text: {
@@ -72,4 +70,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Button;
+export default BannerButton;

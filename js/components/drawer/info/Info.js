@@ -162,7 +162,7 @@ class Info extends Component {
               type='pref'
               />
           </View>
-          <View style={{height: 25}}/>
+          <View style={{height: 30}}/>
           <Button
             right
             title='Settings'

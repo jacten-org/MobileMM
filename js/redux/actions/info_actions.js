@@ -4,6 +4,7 @@ import { REST_SERVER_URL, S3_SERVER_URL } from 'react-native-dotenv';
  
 export default {
   updateAccountData(accountData) {
+    console.log(accountData)
     return async (dispatch, getState) => {
       try {
         const { id } = await getState().accountData

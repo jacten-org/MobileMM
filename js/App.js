@@ -132,7 +132,7 @@ const stdHeaderNavOptions = (title) => {
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
-      fontSize: 30,
+      fontSize: 25,
     },
   }
 }
@@ -229,12 +229,12 @@ const DrawerStack = DrawerNavigator(
     Results: drawerStackNav(resultsTabStack, 'Results'),
   },
   {
-    drawerBackgroundColor: HeaderColor,
+    drawerBackgroundColor: '#9dc1a2',
     contentComponent: Content,
     contentOptions: {
       labelStyle: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: '600',
       }
     },
