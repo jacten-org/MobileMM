@@ -4,24 +4,25 @@ import { Image, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 const Button = ({ color, onPress, title, right}) => {
   return(
     <View style={styles.container}>
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.touchableO}
       onPress={()=> {onPress()}}
       >
       <View style={styles.row}>
-        <View style={styles.box}/>
+        {/* <View style={styles.box}/> */}
         <View style={styles.box}>
           <Text style={[styles.text, {color: color || 'white'}]}>
             {title}
           </Text>
         </View>
-        <View style={styles.box}>
+        <View style={styles.boxRight}>
         {
           right &&
-        <Image
-          style={{width: 20, height: 35, tintColor: 'white'}}
-          source={require('./../../../icons/arrowRight.png')}
-          /> 
+          <Image
+            resizeMode={Image.resizeMode.stretch}
+            style={{ tintColor: 'white', height: 25, width: 15 }}
+            source={require('./../../../icons/arrowRight.png')}
+            /> 
         }
         </View>
         </View>
@@ -32,10 +33,12 @@ const Button = ({ color, onPress, title, right}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 300,
-    height: 60,
-    backgroundColor: '#afd7b4',
-    borderRadius: 5,
+    flexDirection: 'row',
+    // flex: 1,
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    shadowColor: 'black',
+    shadowOffset: { height: 2, width: 0 },
   },
   row: {
     borderRadius: 5,
@@ -44,19 +47,28 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#afd7b4',
+    paddingHorizontal: 20,
   },
   touchableO: {
-    width: 300,
-    height: 60,
+    flex: 1,
+    backgroundColor: '#afd7b4',
+    // width: 300,
+    height: 45,
   },
   text: {
     fontSize: 23,
     textAlign: 'center'
   },
   box: {
+    paddingLeft: 10,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  boxRight: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   }
 })
 

@@ -36,6 +36,7 @@ class Info extends Component {
   static navigationOptions = ({navigation}) => {
     return {
     headerRight: <X onTap={() => navigation.navigate('Main')}/>,
+    headerLeft: null,
     drawerIcon: () => (
       <Image
         style={{width: 30, height: 30, tintColor: 'white'}}
@@ -161,13 +162,12 @@ class Info extends Component {
               type='pref'
               />
           </View>
-          <View style={styles.box}>
-            <Button
-              right
-              title='Settings'
-              onPress={()=>{this.props.navigation.navigate('Settings')}}
-              />
-          </View>
+          <View style={{height: 25}}/>
+          <Button
+            right
+            title='Settings'
+            onPress={()=>{this.props.navigation.navigate('Settings')}}
+            />
         </View>
       </TouchableWithoutFeedback>
     )

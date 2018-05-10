@@ -66,7 +66,7 @@ export default {
         dispatch({
           type: 'MATCHES_DATA_RECIEVED',
           payload: data.matchData || null
-        });
+        }); 
         dispatch({
           type: 'LEADERBOARD_RECIEVED',
           payload: redisData.data.leaderboard || null

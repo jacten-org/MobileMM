@@ -28,7 +28,7 @@ class Settings extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerRight: <X onTap={() => navigation.navigate('Main')}/>,
-      headerLeft: <X onTap={() => navigation.navigate('Profile')}/>,
+      headerLeft: <X onTap={() => navigation.navigate('Info')}/>,
       drawerIcon: () => (
         <Image
           style={{width: 41, height: 30, tintColor: 'white'}}
@@ -39,23 +39,45 @@ class Settings extends Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View
-        style={{flex: 1}} 
-        >
         <View style={styles.container}>
           <View style={styles.box}>
             <Text style={styles.headerText}>
-              Username
+              Account Settings:
             </Text>
-          <Button
-            right
-            title='edit username'
-            onPress={()=>{this.props.navigation.navigate('Username')}}
-            />
+            <Button
+              right
+              title='username'
+              onPress={()=>{navigate('Username')}}
+              />
+            <Button
+              right
+              title='email'
+              onPress={()=>{navigate('Email')}}
+              />
+            <Button
+              right
+              title='password'
+              onPress={()=>{navigate('Password')}}
+              />
+          </View>
+          <View style={styles.box}>
+            <Text style={styles.headerText}>
+              Name Settings:
+            </Text>
+            <Button
+              right
+              title='firstname'
+              onPress={()=>{navigate('Firstname')}}
+              />
+            <Button
+              right
+              title='lastname'
+              onPress={()=>{navigate('Lastname')}}
+              />
           </View>
         </View>
-      </View>
     )
   }
 }
@@ -63,50 +85,23 @@ class Settings extends Component {
 
 const styles = StyleSheet.create({
   box: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 3,
-    padding: 10,
+    // flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    height: 200
   },
   headerText: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 20,
     margin: 3, 
   },
-  counter: {
-    textAlign: 'right',
-    fontSize: 13,
-    padding: 3,
-  },
   container: {
-    flex: 1,
-    // padding: 10,
+    flex: 1, 
     justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  textInput: {
-    width: 300, 
-    backgroundColor: 'lightgrey',
-    height: 60,
-    margin: 3, 
-    padding: 3, 
-    borderRadius: 5,
-  },
-  bioContainer: {
-    height: 100,
-    width: 300, 
-    backgroundColor: 'lightgrey',
-    margin: 3, 
-    padding: 3, 
-    borderRadius: 5,
-  },
-  zip: {
-    color: 'black',
-    textAlign: 'center',
-    letterSpacing: 30, 
-    fontSize: 26,
-    paddingLeft: 20,
-  },
+    marginTop: 20,
+    // alignItems: 'center',
+    flexDirection: 'column'
+  }
 })
 
 export default Settings;
