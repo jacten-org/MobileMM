@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
-const BannerButton = ({ color, onPress, title, right}) => {
+const BannerButton = ({ color, onPress, title, right, middle}) => {
   return(
     <View style={styles.container}>
       <TouchableOpacity
@@ -13,6 +13,14 @@ const BannerButton = ({ color, onPress, title, right}) => {
             <Text style={[styles.text, {color: color || 'white'}]}>
               {title}
             </Text>
+          </View>
+          <View style={styles.boxMiddle}>
+          {
+            middle && 
+            <Text style={[styles.middle, {color: color || 'white'}]}>
+                {middle && middle}
+            </Text>
+          }
           </View>
           <View style={styles.boxRight}>
           {
@@ -55,11 +63,15 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'left'
   },
   box: {
-    paddingLeft: 10,
-    flex: 1,
+    flex: 2,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  boxMiddle: {
+    flex: 3,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
@@ -67,6 +79,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
+  },
+  middle: {
+    paddingTop: 1,
+    fontSize: 15,
+    fontWeight: '500',
+    textAlign: 'left',
   }
 })
 

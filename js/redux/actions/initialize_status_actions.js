@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { REST_SERVER_URL } from 'react-native-dotenv';
+import { REST_SERVER_URL } from 'react-native-dotenv'; 
 
 export default {
   updateInitializeState() {
@@ -16,4 +16,4 @@ export default {
       }
     }
   }
-} 
+};

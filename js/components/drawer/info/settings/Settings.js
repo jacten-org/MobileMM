@@ -9,6 +9,8 @@ import {
   TextInput,
   AsyncStorage,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Button from './../../../globals/buttons/Button';
 import X from './../../../globals/buttons/X';
@@ -16,14 +18,6 @@ import X from './../../../globals/buttons/X';
 class Settings extends Component {
   constructor() {
     super();
-
-    this.state = {
-      username: '',
-      email: '',
-      username: '',
-      firstname: '',
-      lastname: '',
-    }
   }
 
   logout = async () => {
@@ -43,6 +37,14 @@ class Settings extends Component {
     }
   };
 
+  mapPasswordLength = (passwordLength) => {
+    let stars = '';
+    for (let i = passwordLength; i > 0; i--) {
+      stars += '*';
+    }
+    return stars;
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -54,16 +56,19 @@ class Settings extends Component {
             <Button 
               right
               title='username'
+              middle={this.props.username}
               onPress={()=>{navigate('Username')}}
               />
             <Button 
               right
               title='email'
+              middle={this.props.email}
               onPress={()=>{navigate('Email')}}
               />
             <Button 
               right
               title='password'
+              middle={this.mapPasswordLength(this.props.passwordLength)}
               onPress={()=>{navigate('Password')}}
               />
           </View>
@@ -74,11 +79,13 @@ class Settings extends Component {
             <Button
               right
               title='firstname'
+              middle={this.props.firstname}
               onPress={()=>{navigate('Firstname')}}
               />
             <Button 
               right
               title='lastname'
+              middle={this.props.lastname}
               onPress={()=>{navigate('Lastname')}}
               />
           </View>
@@ -115,4 +122,15 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Settings;
+const mapStateToProps = ({ accountData, passwordLength }) => {
+  return {
+    username: accountData.username,
+    email: accountData.email,
+    firstname: accountData.firstname,
+    lastname: accountData.lastname,
+    passwordLength: passwordLength,
+
+  };
+}
+
+export default connect(mapStateToProps)(Settings);

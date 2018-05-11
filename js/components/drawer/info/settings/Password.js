@@ -12,8 +12,8 @@ import axios from 'axios';
 
 import { REST_SERVER_URL } from 'react-native-dotenv';
 
+import actions from '../../../../redux/actions/info_actions';
 import StdButton from '../../../globals/buttons/StdButton';
-
 import X from '../../../globals/buttons/X';
 
 class Password extends Component {
@@ -39,7 +39,7 @@ class Password extends Component {
     }
   };
 
-  handleSaveTap = async () => {
+  handleSaveTap = () => {
     const password = this.state.currentPassword;
     const newPassword = this.state.newPassword;
     const { username, id } = this.props;
@@ -49,12 +49,8 @@ class Password extends Component {
       newPassword,
       id,
     };
-    try {
-      const data = await axios.post(`${REST_SERVER_URL}/api/auth/changepassword`, body);
-      console.log('we good, response: ', data)
-    } catch (err) {
-      console.log(err)
-    }
+    this.props.updatePassword(body);
+    this.props.navigation.goBack();
   }
 
   render () {
@@ -136,10 +132,17 @@ const styles = StyleSheet.create({
   },
 })
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    updatePassword: actions.updatePassword,
+  }, dispatch);
+}
+
 const mapStateToProps = ({ accountData }) => {
   return {
     username: accountData.username,
     id: accountData.id,
   };
 }
-export default connect(mapStateToProps)(Password);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Password);

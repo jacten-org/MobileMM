@@ -47,7 +47,6 @@ class Info extends Component {
   };
 
   handleGenderChange = (state, genderNum) => {
-    console.log('help,', state, genderNum)
     this.setState({ [state]: genderNum });
   }
 
@@ -84,7 +83,6 @@ class Info extends Component {
   }
 
   render() {
-    console.log(this.state.gender, this.state.pref)
 
     const {height, tempHeight} = this.state;
 

@@ -7,7 +7,6 @@ import turnBirthdayIntoAge from '../../utils/turnBirthdayIntoAge';
 
 import { REST_SERVER_URL, REDIS_SERVER_URL } from 'react-native-dotenv';
  
- 
 export default {
   initialize(navigate) {
     return async (dispatch, getState) => {
@@ -17,10 +16,10 @@ export default {
         const { data } = await axios.get(
           `${REST_SERVER_URL}/api/initialize/${id}`
         );
-        console.log('recieved data')
         const redisData = await axios.get(
           `${REDIS_SERVER_URL}/redis/leaderboard/fetchLeaderboardAndRank/${id}`
         );
+        console.log('here')
         dispatch({
           type: 'INITIALIZE_STATUS_TRUE'
         });

@@ -38,6 +38,21 @@ export default {
       }
     }
   },
+  updatePassword(passwordData) {
+    return async (dispatch, getState) => {
+      try {
+        const data = await axios
+        .post(`${REST_SERVER_URL}/api/auth/changepassword`, passwordData);
+        console.log('in password update action with data:', data)
+        dispatch({
+          type: 'PASSWORD_UPDATE_SUCCESS',
+          payload: passwordData.newPassword.length
+          });
+      } catch (err) {
+        console.error
+      }
+    }
+  },
   uploadPhoto(formData) {
     return async (dispatch, getState) => {
       const { id } = getState().accountData;

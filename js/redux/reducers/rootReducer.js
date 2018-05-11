@@ -14,8 +14,10 @@ import tags from './tagsReducer';
 import savedStatus from './savedStatusReducer';
 import comments from './commentsReducer';
 import initializeState from './initializeStateReducer';
+import passwordLength from './passwordUpdateReducer';
 
 const rootReducer = combineReducers({
+  passwordLength,
   accountData,
   bioData,
   currentMatch,

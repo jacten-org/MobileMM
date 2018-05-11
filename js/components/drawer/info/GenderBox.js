@@ -59,7 +59,6 @@ class GenderBox extends Component {
   }
 
   render() {
-    console.log(this.state.genderState)
     return (
       <View style={styles.container}>
         <TouchableHighlight 
