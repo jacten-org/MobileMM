@@ -17,7 +17,6 @@ import { REST_SERVER_URL } from 'react-native-dotenv';
 class Login extends React.Component {
   constructor() {
     super();
-
     this.state = {
       username: '',
       password: '',
@@ -56,7 +55,6 @@ class Login extends React.Component {
           enabled
           >
           <TextInput
-          
             style={styles.textInput}
             placeholder="Username"
             autoCapitalize='none'

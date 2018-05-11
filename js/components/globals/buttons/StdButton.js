@@ -17,9 +17,9 @@ const StdButton = ({ onPress, title, disabled }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 52,
-    height: 30,
-    borderRadius: 15,
+    width: 70,
+    height: 40,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgrey',
   },
   text: {
+    fontSize: 18,
     color: 'white'
   }
 })

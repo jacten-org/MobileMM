@@ -34,9 +34,6 @@ import Email from './components/drawer/info/settings/Email';
 import Firstname from './components/drawer/info/settings/Firstname';
 import Lastname from './components/drawer/info/settings/Lastname';
 
-
-
-
 import HeaderLogo from './components/globals/headerLogo/HeaderLogo';
 import Null from './components/globals/null/null';
 
