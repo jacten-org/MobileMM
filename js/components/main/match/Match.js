@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import OpenDrawer from './../../globals/buttons/OpenDrawer';
+import colors from '../../../utils/colors';
 
 class Match extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Match extends Component {
   render() {
     return (
       <View style={{
-        backgroundColor: '#fab297',
+        backgroundColor: colors.body,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

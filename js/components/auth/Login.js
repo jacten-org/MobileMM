@@ -32,7 +32,7 @@ class Login extends React.Component {
     const body = {
       username,
       password
-    }; 
+    };
     try {
       const data = await axios.post(`${REST_SERVER_URL}/api/auth/login`, body);
       await AsyncStorage.setItem('token', data.data.token);

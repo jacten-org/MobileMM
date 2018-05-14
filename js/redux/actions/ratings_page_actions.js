@@ -5,12 +5,14 @@ import { REST_SERVER_URL } from 'react-native-dotenv';
 export default {
   submitRating(ratingObject) {
     return async (dispatch, getState) => {
+
+      console.log('in action ratings', ratingObject)
       const { id } = getState().accountData;
       const total = getState().ratings.length;
       try {
         await axios.put(
           `${REST_SERVER_URL}/api/ratings/updateUserRating`,
-          ratingObject
+          ratingObject 
         );
         if (total === 1) {
           const data = await axios.get(

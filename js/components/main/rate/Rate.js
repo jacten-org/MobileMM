@@ -10,8 +10,10 @@ import {
   Dimensions,
   Image,
   Slider,
+  Alert,
 } from 'react-native';
 
+import colors from '../../../utils/colors';
 import RateItem from './RateItem';
 import actions from '../../../redux/actions/ratings_page_actions';
 import OpenDrawer from './../../globals/buttons/OpenDrawer';
@@ -38,24 +40,69 @@ class Rate extends Component {
     };
   };
 
-  handleSubmitRating = async () => {
-    this.refs.scrollView.scrollTo({x: width, y: 0, animated: true})
+  handleSubmitRating = () => {
+    let card = 'card' + this.state.target;
+
+    if (typeof this.state.rating !== 'number') {
+      Alert.alert(
+        `${this.state[card].firstname} needs a rating...`,
+        'Please use the slider',
+        [
+          { text: `Got it!` }
+        ],
+      )
+    } else {
+      const body = {
+        ratee: this.state[card].id,
+        attractiveness: this.state.rating,
+        rater: this.props.id
+      };
+      this.props.submitRating(body);
+      
+      this.setState({
+        rating: '',
+      })
+
+      if (this.state.target === 1) {
+        this.refs.scrollView.scrollTo({x: width, y: 0, animated: true})
+      } else if (this.state.target === 2) {
+        this.refs.scrollView.scrollTo({x: width * 2, y: 0, animated: true})
+      }
+    }
   }
 
-  onScrollEnd = (currentCard) => {
-    
-    this.setState({
-      card1: this.state.card2,
-    },
+  onScrollEnd = () => {
+
+    if (this.state.target === 1) {
+      this.setState({
+        target: 2,
+        card1: this.state.card3,
+      })
+    } else if (this.state.target === 2) {
+      this.setState({
+        target: 3,
+        card2: this.props.card2,
+      },
       this.refs.scrollView.scrollTo({x: 0, y: 0, animated: false}))
-    this.setState({
-      card2: this.state.card3,
-    })
+      this.setState({
+        card3: this.props.card3,
+        target: 1,
+      })
+    }
   }
+
+  // componentWillReceiveProps = nextProps => {
+  //   if (nextProps.card1) {
+  //     let card = 'card' + this.state.target;
+  //     this.setState({
+  //       rating: `${nextProps[card].firstname} is a...`,
+  //     })
+  //   }
+  // };
 
   componentDidMount = () => {
+    this.props.card1 &&
       this.setState({
-        rating: `${this.props.card1.firstname} is a...`,
         card1: this.props.card1,
         card2: this.props.card2,
         card3: this.props.card3,
@@ -95,7 +142,11 @@ class Rate extends Component {
       )
       } else {
         return (
-          <View/>
+        <View style={styles.placeholderContainer}>
+          <Text style={styles.text}>
+            No more people left to rate!
+          </Text>
+        </View>
         )
       }
   }
@@ -105,9 +156,22 @@ const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'gold',
+    backgroundColor: colors.s3,
     flex: 1
   },
+  text: {
+    fontWeight: '100',
+    fontSize: 104,
+    color: colors.body,
+  },
+  placeholderContainer: {
+    backgroundColor: colors.s2,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  }
 })
 
 const mapDispatchToProps = dispatch => {

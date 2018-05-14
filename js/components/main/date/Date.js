@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import OpenDrawer from './../../globals/buttons/OpenDrawer';
+import colors from '../../../utils/colors';
 
 class Date extends Component {
   constructor() {
@@ -27,7 +28,7 @@ class Date extends Component {
   render() {
     return (
       <View style={{
-        backgroundColor: '#c0d6e4',
+        backgroundColor: colors.body,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
+import colors from '../../../utils/colors';
+
 const BannerButton = ({ color, onPress, title, right, middle}) => {
   return(
     <View style={styles.container}>
@@ -10,14 +12,14 @@ const BannerButton = ({ color, onPress, title, right, middle}) => {
         >
         <View style={styles.row}>
           <View style={styles.box}>
-            <Text style={[styles.text, {color: color || 'white'}]}>
+            <Text style={[styles.text]}>
               {title}
             </Text>
           </View>
           <View style={styles.boxMiddle}>
           {
             middle && 
-            <Text style={[styles.middle, {color: color || 'white'}]}>
+            <Text style={[styles.middle]}>
                 {middle && middle}
             </Text>
           }
@@ -27,7 +29,7 @@ const BannerButton = ({ color, onPress, title, right, middle}) => {
             right &&
             <Image
               resizeMode={Image.resizeMode.stretch}
-              style={{ tintColor: 'white', height: 25, width: 15 }}
+              style={{ tintColor: 'white', height: 22, width: 13 }}
               source={require('./../../../icons/arrowRight.png')}
               /> 
           }
@@ -53,17 +55,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#afd7b4',
+    backgroundColor: colors.main,
     paddingHorizontal: 20,
   },
   touchableO: {
     flex: 1,
-    backgroundColor: '#afd7b4',
+    backgroundColor: colors.main,
     height: 45,
   },
   text: {
     fontSize: 20,
-    textAlign: 'left'
+    textAlign: 'left',
+    color: colors.body,
   },
   box: {
     flex: 2,
@@ -85,6 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '500',
     textAlign: 'left',
+    color: colors.body,
   }
 })
 

@@ -36,8 +36,7 @@ import Lastname from './components/drawer/info/settings/Lastname';
 
 import HeaderLogo from './components/globals/headerLogo/HeaderLogo';
 import Null from './components/globals/null/null';
-
-const HeaderColor = '#afd7b4'
+import colors from './utils/colors';
 
 const TabStack = TabNavigator(
   {
@@ -59,14 +58,15 @@ const TabStack = TabNavigator(
     tabBarOptions: {
       initialRouteName: 'Match',
       backBehavior: 'none',
-      activeTintColor: 'white',
+      activeTintColor: colors.body,
+      inactiveTintColor: colors.s1,
       labelStyle: {
         fontSize: 20,
         fontWeight: 'bold',
         paddingBottom: 12,
       },
       style: {
-        backgroundColor: HeaderColor,
+        backgroundColor: colors.main,
       },
     },
   }
@@ -80,8 +80,8 @@ const TopBarOptions = {
   tabBarOptions: {
     initialRouteName: 'Results',
     backBehavior: 'none',
-    activeTintColor: HeaderColor,
-    inactiveTintColor: 'lightgrey',
+    activeTintColor: colors.main,
+    inactiveTintColor: colors.s1,
     labelStyle: {
       fontSize: 19,
       fontWeight: 'bold',
@@ -90,7 +90,7 @@ const TopBarOptions = {
       backgroundColor: 'white',
     },
     indicatorStyle: {
-      borderBottomColor: HeaderColor,
+      borderBottomColor: colors.main,
       borderBottomWidth: 6,
     }
   },
@@ -124,7 +124,7 @@ const stdHeaderNavOptions = (title) => {
   return {
     title: title,
     headerStyle: {
-      backgroundColor: HeaderColor,
+      backgroundColor: colors.main,
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
@@ -226,7 +226,7 @@ const DrawerStack = DrawerNavigator(
     Results: drawerStackNav(resultsTabStack, 'Results'),
   },
   {
-    drawerBackgroundColor: '#9dc1a2',
+    drawerBackgroundColor: 'rgba(178, 178, 178, 0.7)',
     contentComponent: Content,
     contentOptions: {
       labelStyle: {

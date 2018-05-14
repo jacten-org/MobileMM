@@ -14,16 +14,21 @@ class ImageScrollView extends Component {
   }
 
   onScrollEnd = (event) => {
-    let { length } = this.props.photos;
-    if (event.nativeEvent.contentOffset.x / width === 0) {
-      this.refs.imageScrollView.scrollTo({x: width * length, y: 0, animated: false})
-    } else if (event.nativeEvent.contentOffset.x / width === length + 1) {
-      this.refs.imageScrollView.scrollTo({x: width, y: 0, animated: false})
-    }
+    this.refs.imageScrollView.scrollTo({x: 0, y: 0, animated: true})
   }
 
+  onRender = () => {
+    console.log(this.refs.imageScrollView)
+  }
+
+
+
+
   render () {
-    const { photos } = this.props;
+    let { photos } = this.props;
+
+    this.onRender();
+    
     return (
         <ScrollView
           showsHorizontalScrollIndicator={false}
@@ -31,29 +36,20 @@ class ImageScrollView extends Component {
           pagingEnabled={true}
           scrollEnabled={true}
           horizontal={true}
-          ref='imageScrollView'
           onMomentumScrollEnd={this.onScrollEnd}
-          contentOffset={{x: width, y: 0}}
+          snapToAlignment={'start'}
           >
-          <Image
-            style={styles.image}
-            source={{uri: photos[photos.length - 1]}}
-            />
           {
             photos.map((photo, index) => {
               return (
               <Image
                 style={styles.image}
                 source={{uri: photo}}
-                key={index}
+                key={index + photo}
                 />
               )
             })
           }
-          <Image
-            style={styles.image}
-            source={{uri: photos[0]}}
-            />
         </ScrollView>
     )
   }

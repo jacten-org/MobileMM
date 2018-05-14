@@ -19,10 +19,9 @@ export default {
         const redisData = await axios.get(
           `${REDIS_SERVER_URL}/redis/leaderboard/fetchLeaderboardAndRank/${id}`
         );
-        console.log('here')
         dispatch({
           type: 'INITIALIZE_STATUS_TRUE'
-        });
+        }); 
         dispatch({
           type: 'USER_ACCOUNT_DATA_RECIEVED',
           payload: data.accountData || null

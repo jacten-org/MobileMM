@@ -28,7 +28,6 @@ class Tags extends Component {
   };
 
   handleTagTap = (route, selected, tag) => {
-    console.log('inhandletagtap', route, selected, tag)
     let type = route === 'You' ? 'user' : 'pref';
     let tagArray = this.props.tags[type];
     if (selected) {
