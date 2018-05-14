@@ -50,7 +50,6 @@ const LeaderboardItem = ({ powerranking, primaryPhoto, username, index, dots, nu
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        
       }}>
       <Text style={styles.number}>{num || index + 1}</Text>
       <View style={styles.avatar}>

@@ -32,7 +32,7 @@ class Login extends React.Component {
     const body = {
       username,
       password
-    };
+    }; 
     try {
       const data = await axios.post(`${REST_SERVER_URL}/api/auth/login`, body);
       await AsyncStorage.setItem('token', data.data.token);
@@ -41,11 +41,11 @@ class Login extends React.Component {
       } else {
         this.setState({ username: '' });
         this.setState({ password: '' });
-      }
+      } 
     } catch (err) {
       console.error(err);
     }
-  };  
+  }; 
 
   render() {
     return (
