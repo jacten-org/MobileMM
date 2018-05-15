@@ -80,11 +80,11 @@ class Rate extends Component {
     } else if (this.state.target === 2) {
       this.setState({
         target: 3,
-        card2: this.props.card2,
+        card2: this.props.card2 || undefined,
       },
       this.refs.scrollView.scrollTo({x: 0, y: 0, animated: false}))
       this.setState({
-        card3: this.props.card3,
+        card3: this.props.card2 || undefined,
         target: 1,
       })
     }

@@ -51,28 +51,30 @@ class RateItem extends Component {
               />
           </View>
           <View style={styles.body}>
-            <Text style={styles.name}>
-              {ratee.firstname 
-                + ' ' +
-              ratee.lastname[0]}
-            </Text>
-            <Text style={styles.text}>
-            {realAge} years old
-            </Text>
-            <View style={styles.tags}>
-              <Text style={styles.text}>
-                {ratee.tags[0]} 
+            <View style={styles.info}>
+              <Text style={styles.name}>
+                {ratee.firstname 
+                  + ' ' +
+                ratee.lastname[0]}
               </Text>
               <Text style={styles.text}>
-                {ratee.tags[1]} 
+              {realAge} years old
               </Text>
-              <Text style={styles.text}>
-                {ratee.tags[2]} 
+              <View style={styles.tags}>
+                <Text style={styles.tag}>
+                  {ratee.tags[0]} 
+                </Text>
+                <Text style={styles.tag}>
+                  {ratee.tags[1]} 
+                </Text>
+                <Text style={styles.tag}>
+                  {ratee.tags[2]} 
+                </Text>
+              </View>
+              <Text style={styles.bio}>
+              {`"${ratee.bio}"`}
               </Text>
             </View>
-            {/* <Text style={styles.text}>
-            {`"${ratee.bio}"`}
-            </Text> */}
             <Text style={styles.rating}>
               {target === card  && !!rating ? rating : `${this.props.ratee && this.props.ratee.firstname} is a...`}
             </Text>
@@ -120,11 +122,26 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.text,
-    fontWeight: 'bold'
+    fontWeight: '300',
+  },
+  bio: {
+    color: colors.text,
+    fontWeight: '300',
+    fontSize: 10,
+  },
+  tag: {
+    color: colors.body,
+    backgroundColor: colors.s5,
+    fontWeight: '400',
+    fontSize: 12,
+    padding: 5,
+    borderRadius: 5,
+    width: 100,
+    textAlign: 'center'
   },
   name: {
     color: colors.text,
-    fontWeight: '400',
+    fontWeight: '300',
     fontSize: 24,
   },
   button: {
@@ -133,19 +150,21 @@ const styles = StyleSheet.create({
   },
   tags: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   slider: {
     width: width - 50,
   },
   rating: {
-    fontSize: 26,
+    fontSize: 40,
     color: colors.text,
-    fontWeight: '500',
+    fontWeight: '200',
     textAlign: 'center',
   },
   image: {
     width: width, 
-    height: width - 80,
+    height: width - 20,
+    resizeMode: 'cover',
   },
   body: {
     flex: 1,
