@@ -13,12 +13,14 @@ class ImageScrollView extends Component {
     super();
   }
 
-  onScrollEnd = (event) => {
-    this.refs.imageScrollView.scrollTo({x: 0, y: 0, animated: true})
+  resetOffset = (event) => {
+    this.refs.imageScrollView.scrollTo({x: 0, y: 0, animated: false})
   }
 
-  onRender = () => {
-    console.log(this.refs.imageScrollView)
+  componentDidUpdate = (prevProps, prevState) => {
+    if (this.props.card !== this.props.target) {
+      this.refs.imageScrollView && this.refs.imageScrollView.scrollTo({x: 0, y: 0, animated: false})
+    }
   }
 
 
@@ -26,8 +28,6 @@ class ImageScrollView extends Component {
 
   render () {
     let { photos } = this.props;
-
-    this.onRender();
     
     return (
         <ScrollView
@@ -38,6 +38,7 @@ class ImageScrollView extends Component {
           horizontal={true}
           onMomentumScrollEnd={this.onScrollEnd}
           snapToAlignment={'start'}
+          ref='imageScrollView'
           >
           {
             photos.map((photo, index) => {

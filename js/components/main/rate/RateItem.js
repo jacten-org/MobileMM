@@ -45,9 +45,10 @@ class RateItem extends Component {
       return (
         <View style={styles.container}>
           <View style={styles.imageHolder}>
-            <Image
-              style={styles.image}
-              source={{uri: ratee.photos[0]}}
+            <ImageScrollView
+              photos={ratee.photos}
+              card={card}
+              target={target}
               />
           </View>
           <View style={styles.body}>
@@ -162,10 +163,10 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     textAlign: 'center',
   },
-  image: {
+  imageHolder: {
     width: width, 
     height: width - 20,
-    resizeMode: 'cover',
+    backgroundColor: colors.s5
   },
   body: {
     flex: 1,
