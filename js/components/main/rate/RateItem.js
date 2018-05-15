@@ -100,7 +100,7 @@ class RateItem extends Component {
       return (
         <View style={styles.container}>
           <Text style={styles.name}>
-            No more people to rate!
+            No more people left to rate!
           </Text>
         </View>
       )
@@ -151,12 +151,13 @@ const styles = StyleSheet.create({
   tags: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginVertical: 5,
   },
   slider: {
     width: width - 50,
   },
   rating: {
-    fontSize: 40,
+    fontSize: 30,
     color: colors.text,
     fontWeight: '200',
     textAlign: 'center',
@@ -168,7 +169,8 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginVertical: 5,
   }
 })
 

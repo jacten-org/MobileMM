@@ -182,6 +182,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    paddingBottom: 10,
     
   }
 });

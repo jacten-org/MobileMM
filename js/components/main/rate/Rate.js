@@ -84,7 +84,7 @@ class Rate extends Component {
       },
       this.refs.scrollView.scrollTo({x: 0, y: 0, animated: false}))
       this.setState({
-        card3: this.props.card2 || undefined,
+        card3: this.props.card3 || undefined,
         target: 1,
       })
     }
@@ -100,7 +100,17 @@ class Rate extends Component {
   };
 
   render() {
-    if (this.state.card1) {
+    console.log(
+      'card1:', this.state.card1,
+      'card2:', this.state.card2,
+      'card3:', this.state.card3,
+      'target', this.state.target,
+    )
+    console.log(
+      'propC1', this.props.card1,
+      'propC2', this.props.card2,
+      'propC3', this.props.card3,
+    )
       return (
         <ScrollView
           style={styles.container}
@@ -136,15 +146,6 @@ class Rate extends Component {
             />
         </ScrollView>
       )
-      } else {
-        return (
-        <View style={styles.placeholderContainer}>
-          <Text style={styles.text}>
-            No more people left to rate!
-          </Text>
-        </View>
-        )
-      }
   }
 }
 
@@ -171,13 +172,10 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      fetchMoreUsersToRate: actions.fetchMoreUsersToRate,
-      submitRating: actions.submitRating
-    },
-    dispatch
-  );
+  return bindActionCreators({
+    fetchMoreUsersToRate: actions.fetchMoreUsersToRate,
+    submitRating: actions.submitRating
+  }, dispatch);
 };
 
 const mapStateToProps = state => {

@@ -68,7 +68,7 @@ class GenderBox extends Component {
           onPress={() => this.onGenderClick('f')} 
           underlayColor='lightgreen'
           >
-          <Text>
+          <Text style={styles.text}>
             female
           </Text>
         </TouchableHighlight>
@@ -77,7 +77,7 @@ class GenderBox extends Component {
           onPress={() => this.onGenderClick('m')} 
           underlayColor='lightgreen'
           >
-          <Text>
+          <Text style={styles.text}>
             male
           </Text>
         </TouchableHighlight>
@@ -86,7 +86,7 @@ class GenderBox extends Component {
           onPress={() => this.onGenderClick('o')} 
           underlayColor='lightgreen'
           >
-          <Text>
+          <Text style={styles.text}>
             other
           </Text>
         </TouchableHighlight>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   selected: {
-    backgroundColor: colors.s1,
+    backgroundColor: colors.s5,
   },
   default: {
     shadowOpacity: 0.4,
@@ -119,6 +119,9 @@ const styles = StyleSheet.create({
     width: 310,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  text: {
+    color: colors.text
   }
 })
 

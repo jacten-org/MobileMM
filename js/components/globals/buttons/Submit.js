@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: 300,
-    height: 50,
+    height: 30,
     margin: 10,
   },
   button: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.s1,
   },
   text: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: '300',
     color: colors.body
   }

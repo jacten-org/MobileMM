@@ -107,13 +107,14 @@ class Info extends Component {
             <View style={[styles.bioContainer, newContainerHeight]}>
               <TextInput
                 onFocus={() => this.updateSize(tempHeight)}
-                style={[newHeight]}
+                style={[newHeight, {color: colors.text}]}
                 editable={true}
                 value={this.state.bio}
                 onContentSizeChange={(e) => this.updateSize(e.nativeEvent.contentSize.height)}
                 autoCapitalize='none'
                 multiline={true}
                 maxLength={140}
+                numberOfLines={3}
                 onChangeText={(bio) => this.setState({
                     bio: bio, 
                     bioCharRemaining: 140 - bio.length,
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   zip: {
-    color: 'black',
+    color: colors.text,
     textAlign: 'center',
     letterSpacing: 30, 
     fontSize: 26,

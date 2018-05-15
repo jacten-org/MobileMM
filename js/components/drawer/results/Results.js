@@ -61,7 +61,7 @@ class Results extends Component {
       : this.props.all
     return (
       <FlatList 
-        style={{backgroundColor: route === 'Starred' ? '#c0d6e4' : '#fb9692', flex: 1}}
+        style={{backgroundColor: route === 'Starred' ? colors.s3 : colors.s1, flex: 1}}
         data={routeData}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}

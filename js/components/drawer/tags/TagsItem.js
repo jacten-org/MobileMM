@@ -13,7 +13,7 @@ const TagsItem = ({ text, color, selected, onTap }) => {
           : [styles.container, styles.default]
         }>
       <View>
-        <Text style={[styles.text, selected && {fontSize: 18, color: colors.body, fontWeight: '700',}]}>
+        <Text style={[styles.text, selected && {fontSize: 14, color: colors.body, fontWeight: '700',}]}>
           {text}
         </Text>
       </View>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 
   },
   selected: {
-    backgroundColor: colors.s4,
+    backgroundColor: colors.s5,
     // shadowOpacity: 0.3,
     // shadowRadius: 2,
     // shadowColor: 'black',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   text: {
-    fontSize: 17,
+    fontSize: 13,
     fontWeight: '500',
     color: colors.text,
     textAlign: 'center',

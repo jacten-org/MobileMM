@@ -59,10 +59,10 @@ const TabStack = TabNavigator(
       initialRouteName: 'Match',
       backBehavior: 'none',
       activeTintColor: colors.body,
-      inactiveTintColor: colors.s2,
+      inactiveTintColor: colors.text,
       labelStyle: {
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 23,
+        fontWeight: '400',
         paddingBottom: 12,
       },
       style: {
