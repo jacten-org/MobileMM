@@ -5,6 +5,7 @@ import { Text, View, Image, ScrollView } from 'react-native';
 
 import LeaderboardItem from './LeaderboardItem';
 import X from './../../globals/buttons/X';
+import colors from '../../../utils/colors';
 
 class Leaderboard extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class Leaderboard extends Component {
       headerRight: <X onTap={() => navigation.navigate('Main')}/>,
       drawerIcon: () => (
         <Image
-          style={{width: 30, height: 30, tintColor: 'white'}}
+          style={{width: 30, height: 30, tintColor: colors.s3}}
           source={require('./../../../icons/png-64px/trophy_64px.png')}
           />
       ),

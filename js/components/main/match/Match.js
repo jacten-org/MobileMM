@@ -33,9 +33,9 @@ class Match extends Component {
         alignItems: 'center',
       }}>
         <Text style={{
-            padding: 80, 
-            fontSize: 50,
-            color: '#fff',
+           fontSize: 80,
+           fontWeight: '200',
+           color: colors.text,
           }}>
           Match
         </Text> 

@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 
 
 import actions from '../../../redux/actions/info_actions';
-
+import colors from '../../../utils/colors';
 import Button from './../../globals/buttons/Button';
 import X from './../../globals/buttons/X';
 import GenderBox from './GenderBox';
@@ -39,7 +39,7 @@ class Info extends Component {
     headerLeft: null,
     drawerIcon: () => (
       <Image
-        style={{width: 30, height: 30, tintColor: 'white'}}
+        style={{width: 30, height: 30, tintColor: colors.s3}}
         source={require('./../../../icons/png-64px/profile-female_64px.png')}
         /> 
     ),
@@ -194,6 +194,7 @@ const styles = StyleSheet.create({
     // padding: 10,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    backgroundColor: colors.body
   },
   textInput: {
     width: 300, 

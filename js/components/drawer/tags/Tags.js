@@ -9,6 +9,7 @@ import X from './../../globals/buttons/X';
 import TagsItem from './TagsItem';
 import tagsArray from './tagsArray';
 import SelectedHolder from './SelectedHolder';
+import colors from '../../../utils/colors';
 
 class Tags extends Component {
   constructor() {
@@ -20,7 +21,7 @@ class Tags extends Component {
     headerRight: <X tags onTap={() => navigation.navigate('Main')}/>,
       drawerIcon: () => (
         <Image
-          style={{width: 41, height: 30, tintColor: 'white'}}
+          style={{width: 41, height: 30, tintColor: colors.s3}}
           source={require('./../../../icons/png-64px/pricetags_64px.png')}
           /> 
       ),
@@ -50,11 +51,11 @@ class Tags extends Component {
       ? this.props.tags.user
       : this.props.tags.pref;
     let colorRoute = route === 'You' 
-      ? '#c0d6e4' 
+      ? colors.body 
       : '#fb9692';
 
     return (
-      <View style={[styles.container, {backgroundColor: colorRoute}]}>
+      <View style={[styles.container, {backgroundColor: colors.body}]}>
         <SelectedHolder
           tags={tagsData}
           route={route}
@@ -64,7 +65,7 @@ class Tags extends Component {
           style={styles.container} 
           contentContainerStyle={{justifyContent: 'center'}}
           >
-          <View style={[styles.scroll, { backgroundColor: colorRoute }]}>
+          <View style={[styles.scroll, { backgroundColor: colors.body }]}>
           {
             tagsArray.map((tag) => {
               let selected = tagsData.includes(tag)
@@ -95,10 +96,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: 'white',
+    backgroundColor: colors.body,
   },
   text: {
-    color: 'black',
+    color: colors.text,
     margin: 20, 
     fontSize: 26, 
     textAlign: 'center', 

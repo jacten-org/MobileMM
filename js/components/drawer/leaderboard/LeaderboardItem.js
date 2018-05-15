@@ -2,12 +2,13 @@ import React from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
 
 import Avatar from './../../globals/avatar/Avatar';
+import colors from '../../../utils/colors';
 
 const stdStyle = (flex, fontsize, textalign, fontweight) => {
   return {
     flex: flex,
     flexDirection: 'column',
-    color: 'white',
+    color: colors.body,
     fontSize: fontsize,
     fontWeight: fontweight,
     alignItems: 'flex-start',
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   dots: {
-    color: 'white', 
+    color: colors.body, 
     fontSize: 60, 
     fontWeight: '100', 
     height: 70, 
@@ -42,14 +43,15 @@ const styles = StyleSheet.create({
 
 const LeaderboardItem = ({ powerranking, primaryPhoto, username, index, dots, num }) => {
   return (
-    dots ? <Text style={styles.dots}>- - - - - </Text> : 
     <View style={{
-        backgroundColor: index % 2 === 1 ? '#fb9692' : '#fab297',
+        backgroundColor: colors.s4,
         flexDirection: 'row',
-        height: 100,
+        height: 90,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        borderColor: colors.body,
+        borderBottomWidth: 1,
       }}>
       <Text style={styles.number}>{num || index + 1}</Text>
       <View style={styles.avatar}>

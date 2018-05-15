@@ -10,21 +10,33 @@ import {
 } from 'react-native';
 
 import ImageScrollView from './ImageScrollview';
-import BannerButton from '../../globals/buttons/Button';
+import SubmitButton from '../../globals/buttons/Submit';
 import turnBirthdayIntoAge from '../../../utils/turnBirthdayIntoAge';
 import colors from '../../../utils/colors';
 
 class RateItem extends Component {
   constructor() {
     super();
+
+    this.state = {
+      rating: ''
+    }
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      rating: `${this.props.ratee && this.props.ratee.firstname} is a...`
+    })
   }
 
   render () {
     let { 
       ratee, 
-      rating, 
       handleSlider, 
       handleSubmitRating,
+      target,
+      card,
+      rating,
     } = this.props;
 
     if (ratee) {
@@ -38,6 +50,7 @@ class RateItem extends Component {
               source={{uri: ratee.photos[0]}}
               />
           </View>
+          <View style={styles.body}>
             <Text style={styles.name}>
               {ratee.firstname 
                 + ' ' +
@@ -57,11 +70,11 @@ class RateItem extends Component {
                 {ratee.tags[2]} 
               </Text>
             </View>
-            <Text style={styles.text}>
+            {/* <Text style={styles.text}>
             {`"${ratee.bio}"`}
-            </Text>
+            </Text> */}
             <Text style={styles.rating}>
-              {rating || `${ratee.firstname} is a...`}
+              {target === card  && !!rating ? rating : `${this.props.ratee && this.props.ratee.firstname} is a...`}
             </Text>
             <Slider
               style={styles.slider}
@@ -70,11 +83,15 @@ class RateItem extends Component {
               maximumValue={10}
               minimumValue={0}
               onValueChange={(rating) => handleSlider(rating)}
+              minimumTrackTintColor={colors.s1}
               />
-            <BannerButton
-              onPress={handleSubmitRating}
-              title='Submit'
-              />
+              <View style={styles.button}>
+                <SubmitButton
+                  onPress={handleSubmitRating}
+                  title='Submit'
+                  />
+              </View>
+            </View>
           </View>
       )
     } else {
@@ -98,7 +115,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
@@ -110,22 +127,30 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 24,
   },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   tags: {
     flexDirection: 'row',
   },
   slider: {
-    width: width,
+    width: width - 50,
   },
   rating: {
-    fontSize: 24,
-    justifyContent: 'center',
+    fontSize: 26,
     color: colors.text,
-    fontWeight: '500'
+    fontWeight: '500',
+    textAlign: 'center',
   },
   image: {
     width: width, 
-    height: width,
+    height: width - 80,
   },
+  body: {
+    flex: 1,
+    justifyContent: 'space-between'
+  }
 })
 
 export default RateItem;

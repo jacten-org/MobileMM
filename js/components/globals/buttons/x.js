@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Image, TouchableOpacity, Text, StyleSheet, View, Alert } from 'react-native';
 
+import colors from '../../../utils/colors';
+
 import actions from '../../../redux/actions/tags_actions';
 
 class X extends Component {

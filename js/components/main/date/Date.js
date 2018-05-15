@@ -32,7 +32,11 @@ class Date extends Component {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-      }}> <Text style={{padding: 80, fontSize: 50, color: '#fff'}}>Date</Text> </View>
+      }}> <Text style={{ 
+          fontSize: 80,
+          fontWeight: '200',
+          color: colors.text,
+      }}>Date</Text> </View>
     )
   }
 }

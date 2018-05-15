@@ -11,6 +11,8 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
+import colors from '../../utils/colors';
+
 
 import { REST_SERVER_URL } from 'react-native-dotenv';
 
@@ -67,15 +69,14 @@ class Login extends React.Component {
             onChangeText={(password) => this.setState({password})}
             />
           <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-            <Text style={{color: 'white', fontSize: 18}}>
+            <Text style={{color: colors.body, fontSize: 18}}>
               Login
             </Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
     );
-  }
+  } 
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
   button: {
     height: 40, 
     width: 300, 
-    backgroundColor: '#afd7b4',
+    backgroundColor: colors.s3,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,

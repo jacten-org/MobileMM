@@ -58,10 +58,6 @@ class Rate extends Component {
         rater: this.props.id
       };
       this.props.submitRating(body);
-      
-      this.setState({
-        rating: '',
-      })
 
       if (this.state.target === 1) {
         this.refs.scrollView.scrollTo({x: width, y: 0, animated: true})
@@ -72,6 +68,9 @@ class Rate extends Component {
   }
 
   onScrollEnd = () => {
+      this.setState({
+        rating: '',
+      })
 
     if (this.state.target === 1) {
       this.setState({
@@ -90,15 +89,6 @@ class Rate extends Component {
       })
     }
   }
-
-  // componentWillReceiveProps = nextProps => {
-  //   if (nextProps.card1) {
-  //     let card = 'card' + this.state.target;
-  //     this.setState({
-  //       rating: `${nextProps[card].firstname} is a...`,
-  //     })
-  //   }
-  // };
 
   componentDidMount = () => {
     this.props.card1 &&
@@ -125,18 +115,24 @@ class Rate extends Component {
             rating={this.state.rating}
             handleSlider={(rating) => {this.setState({rating})}}
             handleSubmitRating={this.handleSubmitRating}
+            target={this.state.target}
+            card={1}
             />
           <RateItem
             ratee={this.state.card2}
             rating={this.state.rating}
             handleSlider={(rating) => {this.setState({rating})}}
             handleSubmitRating={this.handleSubmitRating}
+            target={this.state.target}
+            card={2}
             />
           <RateItem
             ratee={this.state.card3}
             rating={this.state.rating}
             handleSlider={(rating) => {this.setState({rating})}}
             handleSubmitRating={this.handleSubmitRating}
+            target={this.state.target}
+            card={3}
             />
         </ScrollView>
       )

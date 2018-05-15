@@ -17,6 +17,7 @@ import X from '../../globals/buttons/X';
 import PhotosItem from './PhotosItem';
 import ImagePicker from 'react-native-image-picker';
 import actions from '../../../redux/actions/info_actions';
+import colors from '../../../utils/colors';
 
 
 class Photos extends Component {
@@ -34,7 +35,7 @@ class Photos extends Component {
       headerRight: <X onTap={() => navigation.navigate('Main')}/>,
       drawerIcon: () => (
         <Image
-          style={{width: 30, height: 30, tintColor: 'white'}}
+          style={{width: 30, height: 30, tintColor: colors.s3}}
           source={require('../../../icons/png-64px/pictures_64px.png')}
           />
       ),
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#c0d6e4',
+    backgroundColor: colors.s4,
     paddingTop: 10,
   },
   smallPhotosContainer: {

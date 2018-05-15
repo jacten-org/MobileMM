@@ -5,6 +5,7 @@ import { Text, View, Image, StyleSheet } from 'react-native';
 import { DrawerItems, DrawerNavigation } from 'react-navigation';
 
 import Avatar from '../globals/avatar/Avatar';
+import colors from '../../utils/colors';
 
 
 const styles = StyleSheet.create({
@@ -25,13 +26,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   name: { 
-    color: 'white', 
+    color: colors.s3, 
     fontSize: 23, 
     alignItems: 'center',
     marginTop: 5,
   },
   username: { 
-    color: 'white', 
+    color: colors.s3, 
     fontSize: 20, 
     alignItems: 'center',
     fontWeight: 'bold'

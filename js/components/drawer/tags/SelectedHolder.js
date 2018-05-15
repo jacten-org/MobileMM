@@ -1,15 +1,14 @@
 import React from 'react';
 import { Text, Button, View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 
-
-  // const starColor = starred ? '#f1c40f' : 'white';
+import colors from '../../../utils/colors';
 
 const SelectedHolder = ({ tags, route, onTap }) => { 
 
   const shadow =  {
-    shadowOpacity: 0.4,
-    shadowRadius: 2,
-    shadowColor: 'grey',
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    shadowColor: colors.text,
     shadowOffset: { height: 3, width: 3 },
   }
 
@@ -22,7 +21,7 @@ const SelectedHolder = ({ tags, route, onTap }) => {
       </View>
       <View style={styles.selectedBox}>
         <TouchableHighlight
-          underlayColor='#b7dbbb'
+          underlayColor={colors.body}
           style={[styles.tag, tags[0] && shadow]}
           onPress={() => {tags[0] && onTap(route, true, tags[0])}}
           >
@@ -31,7 +30,7 @@ const SelectedHolder = ({ tags, route, onTap }) => {
           </Text>
         </TouchableHighlight>
         <TouchableHighlight 
-          underlayColor='#b7dbbb'
+          underlayColor={colors.body}
           style={[styles.tag, tags[1] && shadow]}
           onPress={() => {tags[1] && onTap(route, true, tags[1])}}
           >
@@ -41,7 +40,7 @@ const SelectedHolder = ({ tags, route, onTap }) => {
         </TouchableHighlight>
         <TouchableHighlight 
           onPress={()=>{}}
-          underlayColor='#b7dbbb'
+          underlayColor={colors.body}
           style={[styles.tag, tags[2] && shadow]}
           onPress={() => {tags[2] && onTap(route, true, tags[2])}}
           >
@@ -63,15 +62,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderColor: '#afd7b4',
+    borderBottomWidth: 2,
+    borderColor: colors.s3,
     padding: 10,
   },
   tag: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#afd7b4',
+    backgroundColor: colors.s4,
     padding: 3,
     margin: 3,
   },
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     fontWeight: '700',
-    color: 'white',
+    color: colors.body,
   }, 
   headerText: {
     fontSize: 23,

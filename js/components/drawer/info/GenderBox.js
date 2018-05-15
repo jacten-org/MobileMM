@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 
+import colors from '../../../utils/colors';
+
 class GenderBox extends Component {
   constructor() {
     super();
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   selected: {
-    backgroundColor: '#afd7b4',
+    backgroundColor: colors.s1,
   },
   default: {
     shadowOpacity: 0.4,

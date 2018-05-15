@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.main,
+    backgroundColor: colors.s4,
     paddingHorizontal: 20,
   },
   touchableO: {
     flex: 1,
-    backgroundColor: colors.main,
+    backgroundColor: colors.s4,
     height: 45,
   },
   text: {

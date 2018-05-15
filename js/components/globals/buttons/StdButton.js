@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
+import colors from '../../../utils/colors';
+
 const StdButton = ({ onPress, title, disabled }) => {
   return(
     <TouchableOpacity
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   active: {
-    backgroundColor: '#afd7b4',
+    backgroundColor: colors.main,
     shadowOpacity: 0.4,
     shadowRadius: 2,
     shadowColor: 'black',
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: 'white'
+    color: colors.body
   }
 })
 

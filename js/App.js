@@ -59,7 +59,7 @@ const TabStack = TabNavigator(
       initialRouteName: 'Match',
       backBehavior: 'none',
       activeTintColor: colors.body,
-      inactiveTintColor: colors.s1,
+      inactiveTintColor: colors.s2,
       labelStyle: {
         fontSize: 20,
         fontWeight: 'bold',
@@ -226,11 +226,11 @@ const DrawerStack = DrawerNavigator(
     Results: drawerStackNav(resultsTabStack, 'Results'),
   },
   {
-    drawerBackgroundColor: 'rgba(178, 178, 178, 0.7)',
+    drawerBackgroundColor: colors.drawer,
     contentComponent: Content,
     contentOptions: {
       labelStyle: {
-        color: 'white',
+        color: colors.s3,
         fontSize: 20,
         fontWeight: '600',
       }

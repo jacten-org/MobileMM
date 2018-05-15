@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
 
+import colors from '../../../utils/colors';
+
 const TagsItem = ({ text, color, selected, onTap }) => {
   return (
     <TouchableOpacity 
@@ -11,7 +13,7 @@ const TagsItem = ({ text, color, selected, onTap }) => {
           : [styles.container, styles.default]
         }>
       <View>
-        <Text style={[styles.text, selected && {fontSize: 18, color: 'white', fontWeight: '700',}]}>
+        <Text style={[styles.text, selected && {fontSize: 18, color: colors.body, fontWeight: '700',}]}>
           {text}
         </Text>
       </View>
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
 
   },
   selected: {
-    backgroundColor: '#afd7b4',
+    backgroundColor: colors.s4,
     // shadowOpacity: 0.3,
     // shadowRadius: 2,
     // shadowColor: 'black',
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 17,
     fontWeight: '500',
-    color: 'black',
+    color: colors.text,
     textAlign: 'center',
   },
 });

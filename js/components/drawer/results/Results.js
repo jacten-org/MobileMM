@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import actions from '../../../redux/actions/follows_page_actions';
 import X from '../../globals/buttons/X';
 import ResultsItem from './ResultsItem';
+import colors from '../../../utils/colors';
 
 class Results extends Component {
   constructor() {
@@ -23,7 +24,7 @@ class Results extends Component {
       headerRight: <X onTap={() => navigation.navigate('Main')}/>,
       drawerIcon: () => (
         <Image
-          style={{width: 30, height: 30, tintColor: 'white'}}
+          style={{width: 30, height: 30, tintColor: colors.s3}}
           source={require('../../../icons/png-64px/scope_64px.png')}
           />
       ),

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 
+import colors from '../../../utils/colors';
+
 const OpenDrawer = ({onTouch}) => {
 
   return(

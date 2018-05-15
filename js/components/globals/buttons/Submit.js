@@ -3,7 +3,7 @@ import { Image, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
 import colors from '../../../utils/colors';
 
-const ModalButton = ({onPress, title, color}) => {
+const Submit = ({onPress, title, color}) => {
   return(
   <View style={styles.container}>
     <TouchableOpacity 
@@ -21,18 +21,22 @@ const ModalButton = ({onPress, title, color}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    width: 300,
+    height: 50,
     margin: 10,
   },
   button: {
     flex: 1,
-    borderRadius: 5,
+    borderRadius: 25,
     alignItems: 'center',
-    backgroundColor: 'slategrey',
-    padding: 13,
+    justifyContent: 'center',
+    backgroundColor: colors.s1,
   },
   text: {
-    fontSize: 23,
+    fontSize: 30,
+    fontWeight: '300',
+    color: colors.body
   }
 })
 
-export default ModalButton;
+export default Submit;
