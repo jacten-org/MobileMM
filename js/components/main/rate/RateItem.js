@@ -19,14 +19,21 @@ class RateItem extends Component {
     super();
 
     this.state = {
-      rating: ''
+      rating: '',
+      value: 5,
     }
   }
 
   componentDidMount = () => {
     this.setState({
-      rating: `${this.props.ratee && this.props.ratee.firstname} is a...`
+      rating: `${this.props.ratee && this.props.ratee.firstname} is a...`,
     })
+  }
+
+  componentDidUpdate = () => {
+    if (this.props.card !== this.props.target) {
+        this.slider.setNativeProps({value: 5})
+    }
   }
 
   render () {
@@ -77,12 +84,13 @@ class RateItem extends Component {
               </Text>
             </View>
             <Text style={styles.rating}>
-              {target === card  && !!rating ? rating : `${this.props.ratee && this.props.ratee.firstname} is a...`}
+              {target === card  && !!rating || rating === 0 ? rating : `${this.props.ratee && this.props.ratee.firstname} is a...`}
             </Text>
             <Slider
               style={styles.slider}
               step={1}
               value={5}
+              ref={r => this.slider = r}
               maximumValue={10}
               minimumValue={0}
               onValueChange={(rating) => handleSlider(rating)}
