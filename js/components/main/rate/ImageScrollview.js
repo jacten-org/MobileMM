@@ -19,12 +19,16 @@ class ImageScrollView extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (this.props.card !== this.props.target) {
-      this.refs.imageScrollView && this.refs.imageScrollView.scrollTo({x: 0, y: 0, animated: false})
+      this.refs.imageScrollView && this.resetOffset();
+      this.props.trackPhotoIndex()
     }
   }
 
+  onScrollEnd = (event) => {
+    this.props.trackPhotoIndex(event.nativeEvent.contentOffset.x / width)
+  }
 
-
+  //trackPhotoIndex
 
   render () {
     let { photos } = this.props;
@@ -36,7 +40,7 @@ class ImageScrollView extends Component {
           pagingEnabled={true}
           scrollEnabled={true}
           horizontal={true}
-          onMomentumScrollEnd={this.onScrollEnd}
+          onMomentumScrollEnd={(event) => this.onScrollEnd(event)}
           snapToAlignment={'start'}
           ref='imageScrollView'
           >

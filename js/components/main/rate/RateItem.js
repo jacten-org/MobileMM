@@ -9,6 +9,7 @@ import {
   Slider,
 } from 'react-native';
 
+import DotIndicator from '../../globals/dotIndicator/DotIndicator';
 import ImageScrollView from './ImageScrollview';
 import SubmitButton from '../../globals/buttons/Submit';
 import turnBirthdayIntoAge from '../../../utils/turnBirthdayIntoAge';
@@ -21,6 +22,7 @@ class RateItem extends Component {
     this.state = {
       rating: '',
       value: 5,
+      currentPhoto: 0,
     }
   }
 
@@ -34,6 +36,12 @@ class RateItem extends Component {
     if (this.props.card !== this.props.target && this.slider) {
         this.slider.setNativeProps({value: 5})
     }
+  }
+
+  trackPhotoIndex = (photoIndex) => {
+    this.setState({
+      currentPhoto: photoIndex
+    })
   }
 
   render () {
@@ -56,8 +64,13 @@ class RateItem extends Component {
               photos={ratee.photos}
               card={card}
               target={target}
+              trackPhotoIndex={this.trackPhotoIndex}
               />
           </View>
+          <DotIndicator
+            total={ratee.photos.length}
+            current={this.state.currentPhoto}
+            />
           <View style={styles.body}>
             <View style={styles.info}>
               <Text style={styles.name}>
@@ -84,7 +97,12 @@ class RateItem extends Component {
               </Text>
             </View>
             <Text style={styles.rating}>
-              {target === card  && !!rating || rating === 0 ? rating : `${this.props.ratee && this.props.ratee.firstname} is a...`}
+              {
+                target === card  && 
+                !!rating || rating === 0 
+                  ? rating 
+                  : `${this.props.ratee && this.props.ratee.firstname} is a...`
+              }
             </Text>
             <Slider
               style={styles.slider}
@@ -179,7 +197,7 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     justifyContent: 'space-between',
-    marginVertical: 5,
+    marginBottom: 10,
   }
 })
 
