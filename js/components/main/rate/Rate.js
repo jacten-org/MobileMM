@@ -22,7 +22,7 @@ class Rate extends Component {
   constructor() {
     super();
     this.state = {
-      rating: '',
+      rating: undefined,
       card1: '',
       card2: '',
       card3: '',
@@ -118,12 +118,12 @@ class Rate extends Component {
           scrollEnabled={false}
           horizontal={true}
           ref="scrollView"
-          onMomentumScrollEnd={this.onScrollEnd}
+          onMomentumScrollEnd={() => this.onScrollEnd()}
           >
           <RateItem
             ratee={this.state.card1}
             rating={this.state.rating}
-            handleSlider={(rating) => {this.setState({rating})}}
+            handleSlider={(rating) => this.setState({rating})}
             handleSubmitRating={this.handleSubmitRating}
             target={this.state.target}
             card={1}
@@ -131,7 +131,7 @@ class Rate extends Component {
           <RateItem
             ratee={this.state.card2}
             rating={this.state.rating}
-            handleSlider={(rating) => {this.setState({rating})}}
+            handleSlider={(rating) => this.setState({rating})}
             handleSubmitRating={this.handleSubmitRating}
             target={this.state.target}
             card={2}
@@ -139,7 +139,7 @@ class Rate extends Component {
           <RateItem
             ratee={this.state.card3}
             rating={this.state.rating}
-            handleSlider={(rating) => {this.setState({rating})}}
+            handleSlider={(rating) => this.setState({rating})}
             handleSubmitRating={this.handleSubmitRating}
             target={this.state.target}
             card={3}

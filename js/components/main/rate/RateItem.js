@@ -26,22 +26,18 @@ class RateItem extends Component {
     }
   }
 
-  componentDidMount = () => {
-    this.setState({
-      rating: `${this.props.ratee && this.props.ratee.firstname} is a...`,
-    })
-  }
-
   componentDidUpdate = () => {
-    if (this.props.card !== this.props.target && this.slider) {
-        this.slider.setNativeProps({value: 5})
+    if (this.props.card !== this.props.target) {
+      this.slider && this.slider.setNativeProps({value: 5})
     }
   }
 
-  trackPhotoIndex = (photoIndex) => {
-    this.setState({
-      currentPhoto: photoIndex
-    })
+  trackPhotoIndex = (photoIndex = 0) => {
+    if (photoIndex !== this.state.currentPhoto) {
+      this.setState({
+        currentPhoto: photoIndex
+      })
+    }
   }
 
   render () {
@@ -98,16 +94,13 @@ class RateItem extends Component {
             </View>
             <Text style={styles.rating}>
               {
-                target === card  && 
-                !!rating || rating === 0 
-                  ? rating 
-                  : `${this.props.ratee && this.props.ratee.firstname} is a...`
+                target === card  && !!rating || rating === 0 ? rating : `${ratee && ratee.firstname} is a...`
               }
             </Text>
             <Slider
               style={styles.slider}
               step={1}
-              value={5}
+              value={this.state.value}
               ref={r => this.slider = r}
               maximumValue={10}
               minimumValue={0}

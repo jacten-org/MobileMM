@@ -21,14 +21,12 @@ class ImageScrollView extends Component {
     if (this.props.card !== this.props.target) {
       this.refs.imageScrollView && this.resetOffset();
       this.props.trackPhotoIndex()
-    }
+    } 
   }
 
   onScrollEnd = (event) => {
     this.props.trackPhotoIndex(event.nativeEvent.contentOffset.x / width)
   }
-
-  //trackPhotoIndex
 
   render () {
     let { photos } = this.props;
