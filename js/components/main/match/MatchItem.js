@@ -67,11 +67,13 @@ class MatchItem extends Component {
               style={styles.image}
               photos={match.user1.photos}
               trackPhotoIndex={this.trackUser1Photo}
+              current={this.state.currentUser1Photo}
               />
             <MatchScrollView
               style={styles.image}
               photos={match.user2.photos}
               trackPhotoIndex={this.trackUser2Photo}
+              current={this.state.currentUser2Photo}
               />  
           </View>
           <View style={styles.dots}>
