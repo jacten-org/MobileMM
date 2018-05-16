@@ -25,6 +25,15 @@ class MatchItem extends Component {
     }
   }
 
+  componentDidUpdate = () => {
+    if (this.props.card !== this.props.target && !!this.state.currentUser1Photo) {
+      this.setState({
+        currentUser1Photo: 0,
+        currentUser2Photo: 0,
+      })
+    }
+  }
+
   trackUser1Photo = (photoIndex = 0) => {
     if (photoIndex !== this.state.currentUser1Photo) {
       this.setState({
@@ -67,12 +76,16 @@ class MatchItem extends Component {
               photos={match.user1.photos}
               trackPhotoIndex={this.trackUser1Photo}
               current={this.state.currentUser1Photo}
+              target={target}
+              card={card}
               />
             <MatchScrollView
               style={styles.image}
               photos={match.user2.photos}
               trackPhotoIndex={this.trackUser2Photo}
               current={this.state.currentUser2Photo}
+              target={target}
+              card={card}
               />  
           </View>
           <View style={styles.dots}>

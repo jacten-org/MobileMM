@@ -19,7 +19,9 @@ class MatchScrollView extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
+    console.log('componentDidUpdate',this.props.card, this.props.target)
     if (this.props.card !== this.props.target) {
+      console.log('reset')
       this.refs.imageScrollView && this.resetOffset();
       this.props.trackPhotoIndex(0)
     }
@@ -27,11 +29,12 @@ class MatchScrollView extends Component {
 
   componentDidMount = () => {
     this.refs.imageScrollView.scrollTo({x: width / 2, y: 0, animated: false})
+    this.props.trackPhotoIndex(0)
   }
 
   onScrollEnd = (event) => {
     let currentIndex = Math.round(event.nativeEvent.contentOffset.x / (width / 2) - 1)
-    console.log('in onScrollEnd', currentIndex)
+    // console.log('in onScrollEnd', currentIndex)
     if (currentIndex === -1) {
       let destination = (width / 2) * (this.props.photos.length)
       this.refs.imageScrollView.scrollTo({x: destination, y: 0, animated: false})
@@ -54,7 +57,7 @@ class MatchScrollView extends Component {
   render () {
     let { photos, current } = this.props;
     
-    console.log(current)
+    // console.log(current)
     
     return (
         <ScrollView
