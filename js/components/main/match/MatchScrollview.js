@@ -15,30 +15,46 @@ class MatchScrollView extends Component {
   }
 
   resetOffset = (event) => {
-    this.refs.imageScrollView.scrollTo({x: 0, y: 0, animated: false})
+    this.refs.imageScrollView.scrollTo({x: width / 2, y: 0, animated: false})
   }
 
   componentDidUpdate = (prevProps, prevState) => {
     if (this.props.card !== this.props.target) {
       this.refs.imageScrollView && this.resetOffset();
-      this.props.trackPhotoIndex()
+      this.props.trackPhotoIndex(0)
     }
   }
 
+  componentDidMount = () => {
+    this.refs.imageScrollView.scrollTo({x: width / 2, y: 0, animated: false})
+  }
+
   onScrollEnd = (event) => {
-    let viewWidth = width / 2
-    this.props.trackPhotoIndex(event.nativeEvent.contentOffset.x / viewWidth)
+    let currentIndex = Math.round(event.nativeEvent.contentOffset.x / (width / 2) - 1)
+    console.log('in onScrollEnd', currentIndex)
+    if (currentIndex === -1) {
+      let destination = (width / 2) * (this.props.photos.length)
+      this.refs.imageScrollView.scrollTo({x: destination, y: 0, animated: false})
+      this.props.trackPhotoIndex(this.props.photos.length - 1)
+    } else if (currentIndex === this.props.photos.length) {
+      this.refs.imageScrollView.scrollTo({x: width / 2, y: 0, animated: false})
+      this.props.trackPhotoIndex(0)
+    } else {
+      this.props.trackPhotoIndex(currentIndex)
+    }
   }
 
   handlePhotoTap = () => {
-    let computedOffset = (this.props.current + 1) * (width / 2)
+    let computedOffset = (this.props.current + 2) * (width / 2)
     this.refs.imageScrollView.scrollTo({x: computedOffset, y: 0, animated: true})
   }
 
 
 
   render () {
-    let { photos } = this.props;
+    let { photos, current } = this.props;
+    
+    console.log(current)
     
     return (
         <ScrollView
@@ -48,14 +64,17 @@ class MatchScrollView extends Component {
           scrollEnabled={true}
           horizontal={true}
           onMomentumScrollEnd={this.onScrollEnd}
-          snapToAlignment={'start'}
           ref='imageScrollView'
           >
+          <Image
+            style={styles.image}
+            source={{uri: photos[photos.length - 1]}}
+            />
           {
             photos.map((photo, index) => {
               return (
                 <TouchableOpacity
-                  activeOpacity={0.9}
+                  activeOpacity={1}
                   key={index + photo}
                   style={styles.container}
                   onPress={this.handlePhotoTap}
@@ -68,6 +87,10 @@ class MatchScrollView extends Component {
               )
             })
           }
+          <Image
+            style={styles.image}
+            source={{uri: photos[0]}}
+            />
         </ScrollView>
     )
   }

@@ -26,10 +26,9 @@ class MatchItem extends Component {
   }
 
   trackUser1Photo = (photoIndex = 0) => {
-    let roundedIndex = Math.round(photoIndex)
     if (photoIndex !== this.state.currentUser1Photo) {
       this.setState({
-        currentUser1Photo: roundedIndex
+        currentUser1Photo: photoIndex
       })
     }
   }
