@@ -9,6 +9,7 @@ import {
   Slider,
 } from 'react-native';
 
+import DotIndicator from '../../globals/dotIndicator/DotIndicator';
 import MatchScrollView from './MatchScrollview';
 import VoteButton from '../../globals/buttons/Vote';
 import turnBirthdayIntoAge from '../../../utils/turnBirthdayIntoAge';
@@ -17,9 +18,33 @@ import colors from '../../../utils/colors';
 class MatchItem extends Component {
   constructor() {
     super();
+
+    this.state = {
+      currentUser1Photo: 0,
+      currentUser2Photo: 0,
+    }
+  }
+
+  trackUser1Photo = (photoIndex = 0) => {
+    let roundedIndex = Math.round(photoIndex)
+    if (photoIndex !== this.state.currentUser1Photo) {
+      this.setState({
+        currentUser1Photo: roundedIndex
+      })
+    }
+  }
+
+  trackUser2Photo = (photoIndex = 0) => {
+    let roundedIndex = Math.round(photoIndex)
+    if (photoIndex !== this.state.currentUser2Photo) {
+      this.setState({
+        currentUser2Photo: roundedIndex
+      })
+    }
   }
 
   render () {
+
     let { 
       match, 
       handleVote,
@@ -41,11 +66,23 @@ class MatchItem extends Component {
             <MatchScrollView
               style={styles.image}
               photos={match.user1.photos}
+              trackPhotoIndex={this.trackUser1Photo}
               />
             <MatchScrollView
               style={styles.image}
               photos={match.user2.photos}
+              trackPhotoIndex={this.trackUser2Photo}
               />  
+          </View>
+          <View style={styles.dots}>
+            <DotIndicator
+              total={match.user1.photos.length}
+              current={this.state.currentUser1Photo}
+              />
+            <DotIndicator
+              total={match.user2.photos.length}
+              current={this.state.currentUser2Photo}
+              />
           </View>
           <View style={styles.body}>
             <View style={styles.info}>
@@ -200,7 +237,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
   },
   info: {
     flexDirection: 'row',
@@ -208,7 +245,12 @@ const styles = StyleSheet.create({
   user: {
     width: width / 2, 
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 0,
+  },
+  dots: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: width,
   }
 })
 

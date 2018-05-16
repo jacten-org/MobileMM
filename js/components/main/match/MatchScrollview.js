@@ -19,10 +19,15 @@ class MatchScrollView extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (this.props.card !== this.props.target) {
-      this.refs.imageScrollView && this.refs.imageScrollView.scrollTo({x: 0, y: 0, animated: false})
+      this.refs.imageScrollView && this.resetOffset();
+      this.props.trackPhotoIndex()
     }
   }
 
+  onScrollEnd = (event) => {
+    let viewWidth = width / 2
+    this.props.trackPhotoIndex(event.nativeEvent.contentOffset.x / viewWidth)
+  }
 
 
 
@@ -31,11 +36,11 @@ class MatchScrollView extends Component {
     
     return (
         <ScrollView
-          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           style={styles.container}
           pagingEnabled={true}
           scrollEnabled={true}
-          horizontal={false}
+          horizontal={true}
           onMomentumScrollEnd={this.onScrollEnd}
           snapToAlignment={'start'}
           ref='imageScrollView'

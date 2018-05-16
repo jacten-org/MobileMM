@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import DotIndicator from '../../globals/dotIndicator/DotIndicator';
-import ImageScrollView from './ImageScrollview';
+import RateScrollView from './RateScrollview';
 import SubmitButton from '../../globals/buttons/Submit';
 import turnBirthdayIntoAge from '../../../utils/turnBirthdayIntoAge';
 import colors from '../../../utils/colors';
@@ -33,9 +33,10 @@ class RateItem extends Component {
   }
 
   trackPhotoIndex = (photoIndex = 0) => {
-    if (photoIndex !== this.state.currentPhoto) {
+    let roundedIndex = Math.round(photoIndex)
+    if (roundedIndex !== this.state.currentPhoto) {
       this.setState({
-        currentPhoto: photoIndex
+        currentPhoto: roundedIndex
       })
     }
   }
@@ -56,7 +57,7 @@ class RateItem extends Component {
       return (
         <View style={styles.container}>
           <View style={styles.imageHolder}>
-            <ImageScrollView
+            <RateScrollView
               photos={ratee.photos}
               card={card}
               target={target}
