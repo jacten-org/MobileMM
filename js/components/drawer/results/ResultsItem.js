@@ -11,14 +11,14 @@ const ResultsItem = ({ user1, user2, starred, handleStar, firstAccept, secondAcc
     <View style={styles.container}>
       <View style={styles.innerContainer}>
         <View style={styles.row}>
-            <Avatar medium source={{uri: user1.photos[1].url}}/>
+            <Avatar medium source={{uri: user1.photos[0].url}}/>
             <View style={styles.nameBox}>
               <Text style={styles.names}>{user1.firstname}: </Text>
               <Text style={styles.na}>pending</Text>
             </View>
         </View> 
         <View style={styles.row}>
-          <Avatar medium source={{uri: user2.photos[3].url}}/>
+          <Avatar medium source={{uri: user2.photos[0].url}}/>
           <View style={styles.nameBox}>
             <Text style={styles.names}>{user2.firstname}: </Text>
             <Text style={styles.na}>pending</Text>

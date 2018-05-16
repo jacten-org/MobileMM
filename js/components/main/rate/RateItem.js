@@ -31,7 +31,7 @@ class RateItem extends Component {
   }
 
   componentDidUpdate = () => {
-    if (this.props.card !== this.props.target) {
+    if (this.props.card !== this.props.target && this.slider) {
         this.slider.setNativeProps({value: 5})
     }
   }
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     width: width - 50,
   },
   rating: {
-    fontSize: 30,
+    fontSize: 34,
     color: colors.text,
     fontWeight: '200',
     textAlign: 'center',
