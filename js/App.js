@@ -20,6 +20,8 @@ import Login from './components/auth/Login';
 import AuthLoading from './components/authLoading/AuthLoading';
 import Logout from './components/drawer/Logout';
 
+import Profile from './components/globals/profile/Profile';
+
 import Leaderboard from './components/drawer/leaderboard/Leaderboard';
 import Results from './components/drawer/results/Results';
 import Photos from './components/drawer/photos/Photos';
@@ -137,7 +139,7 @@ const stdHeaderNavOptions = (title) => {
 const drawerStackNav = (screen, header) => {
   return {
     screen: StackNavigator({ 
-      Leaderboard: {
+      DrawerStackNav: {
         screen: screen, 
         navigationOptions: stdHeaderNavOptions(header),
       }
@@ -189,7 +191,7 @@ const transitionStack = StackNavigator({
 const InfoStack = StackNavigator({
   Info: {
     screen: Info,
-    navigationOptions: stdHeaderNavOptions('Profile')
+    navigationOptions: stdHeaderNavOptions('Settings')
   },
   Transition: transitionStack,
 })
@@ -215,6 +217,17 @@ const DrawerStack = DrawerNavigator(
   {
     Main: {
       screen: MainStack,
+      navigationOptions: {
+        drawerLabel: <Null/>,
+      }
+    },
+    Profile: {
+      screen: StackNavigator({ 
+        DrawerStackNav: {
+          screen: Profile, 
+          navigationOptions: stdHeaderNavOptions('Your Profile'),
+        }
+      }),
       navigationOptions: {
         drawerLabel: <Null/>,
       }

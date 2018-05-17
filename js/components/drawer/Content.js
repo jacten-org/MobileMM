@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { DrawerItems, DrawerNavigation } from 'react-navigation';
 
 import Avatar from '../globals/avatar/Avatar';
@@ -41,7 +41,10 @@ const styles = StyleSheet.create({
 
 const DrawerContent = (props) => (
 <View style={styles.drawer}>
-  <View style={styles.header}>
+  <TouchableOpacity 
+    style={styles.header}
+    onPress={() => props.navigation.navigate('Profile')}
+    >
     <Avatar xxl round source={{uri: props.userAvatar}}/>
     <Text style={styles.name}>
       {props.realName} 
@@ -49,7 +52,7 @@ const DrawerContent = (props) => (
     <Text style={styles.username}>
       {props.userName}
     </Text> 
-  </View>
+  </TouchableOpacity>
   <View style={styles.separator}/>
   <DrawerItems {...props}/>
 </View>

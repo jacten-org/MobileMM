@@ -42,7 +42,7 @@ class Info extends Component {
         style={{width: 30, height: 30, tintColor: colors.s3}}
         source={require('./../../../icons/png-64px/profile-female_64px.png')}
         /> 
-    ),
+      ),
     }
   };
 
@@ -236,4 +236,5 @@ const mapStateToProps = ({ bioData }) => {
     pref: bioData.preference || "",
   };
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Info);
