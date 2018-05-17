@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import DotIndicator from '../../globals/dotIndicator/DotIndicator';
-import MatchScrollView from './MatchScrollview';
+import ImageScrollView from '../../globals/imageScrollView/ImageScrollview';
 import VoteButton from '../../globals/buttons/Vote';
 import turnBirthdayIntoAge from '../../../utils/turnBirthdayIntoAge';
 import colors from '../../../utils/colors';
@@ -25,14 +25,15 @@ class MatchItem extends Component {
     }
   }
 
-  componentDidUpdate = () => {
-    if (this.props.card !== this.props.target && !!this.state.currentUser1Photo) {
-      this.setState({
-        currentUser1Photo: 0,
-        currentUser2Photo: 0,
-      })
-    }
-  }
+  // I THINK UNNECESSARY. DELETE SOON
+  // componentDidUpdate = () => {
+  //   if (this.props.card !== this.props.target && !!this.state.currentUser1Photo) {
+  //     this.setState({
+  //       currentUser1Photo: 0,
+  //       currentUser2Photo: 0,
+  //     })
+  //   }
+  // }
 
   trackUser1Photo = (photoIndex = 0) => {
     if (photoIndex !== this.state.currentUser1Photo) {
@@ -63,7 +64,8 @@ class MatchItem extends Component {
 
 
     if (match && match.user1) {
-      let realAge = turnBirthdayIntoAge(match.user1.age);
+      let user1Age = turnBirthdayIntoAge(match.user1.age);
+      let user2Age = turnBirthdayIntoAge(match.user2.age);
   
       return (
         <View style={styles.container}>
@@ -71,21 +73,23 @@ class MatchItem extends Component {
             {`${match.user1.firstname} + ${match.user2.firstname}`}
           </Text>
           <View style={styles.imageHolder}>
-            <MatchScrollView
-              style={styles.image}
+            <ImageScrollView
               photos={match.user1.photos}
               trackPhotoIndex={this.trackUser1Photo}
               current={this.state.currentUser1Photo}
               target={target}
               card={card}
+              width={width / 2}
+              height={width / 1.5}
               />
-            <MatchScrollView
-              style={styles.image}
+            <ImageScrollView
               photos={match.user2.photos}
               trackPhotoIndex={this.trackUser2Photo}
               current={this.state.currentUser2Photo}
               target={target}
               card={card}
+              width={width / 2}
+              height={width / 1.5}
               />  
           </View>
           <View style={styles.dots}>
@@ -107,7 +111,7 @@ class MatchItem extends Component {
                   match.user1.lastname[0]}
                 </Text>
                 <Text style={styles.text}>
-                {realAge} years old
+                {user1Age} years old
                 </Text>
                 <View style={styles.tags}>
                   <Text style={styles.tag}>
@@ -131,7 +135,7 @@ class MatchItem extends Component {
                   match.user2.lastname[0]}
                 </Text>
                 <Text style={styles.text}>
-                {realAge} years old
+                {user2Age} years old
                 </Text>
                 <View style={styles.tags}>
                   <Text style={styles.tag}>
