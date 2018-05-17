@@ -21,7 +21,7 @@ class RateItem extends Component {
 
     this.state = {
       rating: '',
-      value: 5,
+      value: 5.5,
       currentPhoto: 0,
     }
   }
@@ -106,7 +106,7 @@ class RateItem extends Component {
               value={this.state.value}
               ref={r => this.slider = r}
               maximumValue={10}
-              minimumValue={0}
+              minimumValue={1}
               onValueChange={(rating) => handleSlider(rating)}
               minimumTrackTintColor={colors.s1}
               />
