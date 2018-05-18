@@ -29,40 +29,54 @@ class Dating extends Component {
       ),
     };
   };
+
   render() {
-    let {
+
+    const {
       matches,
+      pending,
     } = this.props;
 
-    if (matches) {
-      
+
+    console.log(pending) 
+    
+    if (pending) {
+      return (
+        <PendingDate
+          firstname={pending[0].user2_id.firstname}
+          lastname={pending[0].user2_id.lastname}
+          age={pending[0].user2_id.age}
+          bio={pending[0].user2_id.bio}
+          photos={pending[0].user2_id.photos.map(photo => photo.url)}
+          tags={pending[0].tags}
+          />
+      )
+    } else {
+      return (
+        <View style={{
+          backgroundColor: colors.body,
+          flex: 1,
+          }}>
+          <Text>
+            {matches[0] && matches[0].id}
+          </Text>
+        </View>
+      )
     }
-
-
-    return (
-      <View style={{
-        backgroundColor: colors.body,
-        flex: 1,
-        }}>
-        <Text>
-          {matches[0] && matches[0].id}
-        </Text>
-      </View>
-    )
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({
+// const mapDispatchToProps = dispatch => {
+//   return bindActionCreators({
 
-  }, dispatch);
-};
+//   }, dispatch);
+// };
 
 const mapStateToProps = state => {
   return {
-    matches: [ state.dating ]
-
+    matches: state.dating.matches,
+    pending: state.dating.pending,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dating);
+export default connect(mapStateToProps)(Dating);

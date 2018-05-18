@@ -48,7 +48,7 @@ export default {
         dispatch({
           type: 'USER_SIGNUP_STATUS_RECIEVED',
           payload: data.signupStatusData || false
-        });
+        }); 
         dispatch({
           type: 'USER_FOLLOWS_RECIEVED',
           payload: data.outcomesData || null

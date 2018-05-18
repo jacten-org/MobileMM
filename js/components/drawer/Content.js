@@ -8,6 +8,26 @@ import Avatar from '../globals/avatar/Avatar';
 import colors from '../../utils/colors';
 
 
+
+const DrawerContent = (props) => (
+  <View style={styles.drawer}>
+  <TouchableOpacity 
+    style={styles.header}
+    onPress={() => props.navigation.navigate('Profile')}
+    >
+    <Avatar xxl round source={{uri: props.userAvatar}}/>
+    <Text style={styles.name}>
+      {props.realName} 
+    </Text> 
+    <Text style={styles.username}>
+      {props.userName}
+    </Text> 
+  </TouchableOpacity>
+  <View style={styles.separator}/>
+  <DrawerItems {...props}/>
+</View>
+);
+
 const styles = StyleSheet.create({
   separator: {
     borderBottomColor: 'white',
@@ -38,26 +58,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
-
-const DrawerContent = (props) => (
-<View style={styles.drawer}>
-  <TouchableOpacity 
-    style={styles.header}
-    onPress={() => props.navigation.navigate('Profile')}
-    >
-    <Avatar xxl round source={{uri: props.userAvatar}}/>
-    <Text style={styles.name}>
-      {props.realName} 
-    </Text> 
-    <Text style={styles.username}>
-      {props.userName}
-    </Text> 
-  </TouchableOpacity>
-  <View style={styles.separator}/>
-  <DrawerItems {...props}/>
-</View>
-);
-
 const mapStateToProps = state => {
   return {
     userAvatar: state.userPhotos[0] && state.userPhotos[0].url,

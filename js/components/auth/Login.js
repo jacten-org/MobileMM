@@ -18,7 +18,7 @@ import { REST_SERVER_URL } from 'react-native-dotenv';
 
 class Login extends React.Component {
   constructor() {
-    super();
+    super(); 
     this.state = {
       username: '',
       password: '',

@@ -1,10 +1,11 @@
-const mapOutPending = (array) => {
-  let pending = array.filter((match) => {
-    return match.issuccessful === 0 && match.firstAccept !== match.user1_id
-  });
+const mapOutPending = (matches) => {
+  let pending = matches
+    .filter((match) => {
+      return match.issuccessful === 0 && match.firstAccept !== match.user1_id
+    });
   return {
     pending,
-    array,
+    matches,
   }
 }
 

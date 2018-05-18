@@ -51,7 +51,22 @@ class Profile extends Component {
       lastname,
       tags,
       bio,
+      firstnameProp,
+      lastnameProp,
+      ageProp,
+      bioProp,
+      photosProp,
+      tagsProp,
     } = this.props;
+
+    if (firstnameProp) {
+      photos=photosProp;
+      age=ageProp;
+      firstname=firstnameProp;
+      lastname=lastnameProp;
+      tags=tagsProp;
+      bio=bioProp;
+    }
 
     if (age) {
       let realAge = turnBirthdayIntoAge(age);
