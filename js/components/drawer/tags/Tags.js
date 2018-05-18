@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     margin: 20, 
     fontSize: 26, 
     textAlign: 'center', 
-  }
+  },
 })
 
 const mapDispatchToProps = (dispatch) => {

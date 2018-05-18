@@ -14,6 +14,6 @@ export default {
       } catch (err) {
         console.log('error on update initialize state action', err)
       }
-    }
+    } 
   }
 };

@@ -37,7 +37,7 @@ export default {
       } catch (err) {
         console.error
       }
-    }
+    } 
   },
   checkForNewMatch() {
     return async (dispatch, getState) => {

@@ -18,7 +18,7 @@ export default {
         });
       } catch (err) {
         console.error;
-      }
+      } 
     };
   }, 
   postMatchmakerDecision(voteObject) {

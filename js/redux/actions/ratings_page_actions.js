@@ -17,7 +17,7 @@ export default {
         if (total === 1) {
           const data = await axios.get(
             `${REST_SERVER_URL}/api/ratings/fetchMultipleUsers/${id}`
-          );
+          ); 
           dispatch({
             type: 'ADDITIONAL_USERS_TO_RATE_ADDED',
             payload: data.data,

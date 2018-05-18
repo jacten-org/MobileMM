@@ -7,8 +7,10 @@ import {
   Dimensions,
   Image,
   Slider,
+  Modal,
 } from 'react-native';
 
+import ModalBox from '../../globals/modalBox/ModalBox';
 import Profile from '../../globals/profile/Profile';
 import DotIndicator from '../../globals/dotIndicator/DotIndicator';
 import ImageScrollView from '../../globals/imageScrollView/ImageScrollview';
@@ -19,6 +21,16 @@ import colors from '../../../utils/colors';
 class PendingDate extends Component {
   constructor() {
     super();
+
+    this.state = {
+      modalVisible: false,
+    }
+  }
+
+  handleVote = () => {
+    this.setState({
+      modalVisible: true,
+    })
   }
 
   render () {
@@ -39,29 +51,49 @@ class PendingDate extends Component {
 
       return (
         <View style={styles.container}>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.modalVisible}
+          > 
+          <View style={styles.modal}>
+            <ModalBox
+              title={'Are you sure?'}
+              body={'You will never see this person again!'}
+              button1Text={'Yes, Reject!'}
+              button1Color={'main'}
+              onButton1Press={()=> {this.setState({modalVisible: false})}}
+              button2Text={'No. Go Back!'}
+              button2Color={'main'}
+              onButton2Press={()=> {this.setState({modalVisible: false})}}
+              />
+          </View>
+        </Modal>
           <Text style={styles.header}>
             {`You matched with ${firstname}`}
           </Text>
-          <Profile
-            firstnameProp={firstname}
-            lastnameProp={lastname}
-            ageProp={age}
-            bioProp={bio}
-            photosProp={photos}
-            tagsProp={tags}
-            />
+          <View style={styles.profile}>
+            <Profile
+              firstnameProp={firstname}
+              lastnameProp={lastname}
+              ageProp={age}
+              bioProp={bio}
+              photosProp={photos}
+              tagsProp={tags}
+              />
+          </View>
           <View style={styles.button}>
             <Text style={styles.prompt}>
             {`Will you accept this match?`}
             </Text>
             <View style={{flexDirection: 'row', justifyContent: 'space-evenly', width: width}}>
             <VoteButton
-              onPress={() => handleVote('approved')}
+              onPress={() => this.handleVote('approved')}
               title='Yes!'
               />
             <VoteButton
               negative
-              onPress={() => handleVote('rejected')}
+              onPress={() => this.handleVote('rejected')}
               title='No Thanks'
               />
             </View>
@@ -80,84 +112,38 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  text: {
-    color: colors.text,
-    fontWeight: '300',
+    },
+  profile: {
+    flex: 1,
   },
   prompt: {
     color: colors.text,
     fontWeight: '300',
     fontSize: 22,
-  },
-  bio: {
-    color: colors.text,
-    fontWeight: '300',
-    fontSize: 11,
-  },
-  tag: {
-    color: colors.body,
-    backgroundColor: colors.s5,
-    fontWeight: '400',
-    fontSize: 12,
-    padding: 5,
-    borderRadius: 5,
-    width: width / 5,
-    textAlign: 'center',
-    margin: 1,
-  },
-  name: {
-    color: colors.text,
-    fontWeight: '300',
-    fontSize: 24,
-  },
+    },
   button: {
-    flex: 1,
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  tags: {
-    width: width / 2,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginVertical: 10,
-  },
-  slider: {
-    width: width - 50,
-  },
+    },
   header: {
     fontSize: 36,
     color: colors.text,
     fontWeight: '200',
-    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     margin: 10,
+    },
+  modal: {
+    flex: 1, 
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    paddingBottom: 10,
   },
-  imageHolder: {
-    flexDirection: 'row',
-    width: width, 
-    height: width / 1.5,
-    backgroundColor: colors.s5,
-  },
-  body: {
-    flex: 1,
-    justifyContent: 'flex-start',
-  },
-  info: {
-    flexDirection: 'row',
-  },
-  user: {
-    width: width / 2, 
-    paddingHorizontal: 20,
-    paddingVertical: 0,
-  },
-  dots: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: width,
-  }
-})
+  })
 
 export default PendingDate;

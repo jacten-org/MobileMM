@@ -33,7 +33,7 @@ export default {
         dispatch({
           type: 'USER_TAGS_RECIEVED',
           payload: data.tagData || null
-        });
+        }); 
         dispatch({
           type: 'USER_PHOTOS_RECIEVED',
           payload: data.photoData.photos || null

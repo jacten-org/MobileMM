@@ -53,7 +53,7 @@ class Photos extends Component {
   setModalVisible = (visible, target) => {
     this.setState({
       modalVisible: visible,
-      targetPhoto: target
+      targetPhoto: target,
     });
   }
 
@@ -112,7 +112,8 @@ class Photos extends Component {
           visible={this.state.modalVisible}
           >
           <View style={styles.modal}>
-            { this.state.targetPhoto !== 0 &&
+            { 
+              this.state.targetPhoto !== 0 &&
               <ModalButton
                 title={'Set Avatar'}
                 color={'#c0d6e4'}
@@ -183,7 +184,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
     paddingBottom: 10,
-    
   }
 });
 

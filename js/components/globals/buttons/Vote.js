@@ -7,10 +7,22 @@ const Vote = ({ onPress, title, color, negative }) => {
   return(
   <View style={styles.container}>
     <TouchableOpacity 
-      style={[styles.button, negative && styles.negative]}
+      style={
+        [
+          styles.button,
+          color && {backgroundColor: colors[color]}, 
+          negative && styles.negative, 
+          negative && color && {borderColor: colors[color]}
+        ]}
       onPress={()=> {onPress()}}
       >
-      <Text style={[styles.text, negative && {color: colors.s2}]}>
+      <Text style={
+        [
+          styles.text, 
+          negative && {color: colors.s2},
+          color && negative && {color: colors[color]}
+        ]
+        }>
         {title}
       </Text>
     </TouchableOpacity>

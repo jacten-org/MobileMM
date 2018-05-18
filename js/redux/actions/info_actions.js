@@ -17,7 +17,7 @@ export default {
         });
       } catch (err) {
         console.error
-      }
+      } 
     }
   },
   updateBioData(bioData) {
