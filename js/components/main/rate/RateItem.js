@@ -28,7 +28,7 @@ class RateItem extends Component {
 
   componentDidUpdate = () => {
     if (this.props.card !== this.props.target) {
-      this.slider && this.slider.setNativeProps({value: 5})
+      this.slider && this.slider.setNativeProps({value: 5.5})
     }
   }
 

@@ -100,17 +100,7 @@ class Rate extends Component {
   };
 
   render() {
-    // console.log(
-    //   'card1:', this.state.card1,
-    //   'card2:', this.state.card2,
-    //   'card3:', this.state.card3,
-    //   'target', this.state.target,
-    // )
-    // console.log(
-    //   'propC1', this.props.card1,
-    //   'propC2', this.props.card2,
-    //   'propC3', this.props.card3,
-    // )
+
       return (
         <ScrollView
           style={styles.container}

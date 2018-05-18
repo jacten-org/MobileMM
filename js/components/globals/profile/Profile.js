@@ -53,8 +53,6 @@ class Profile extends Component {
       bio,
     } = this.props;
 
-    console.log('hi', photos)
-
     if (age) {
       let realAge = turnBirthdayIntoAge(age);
   

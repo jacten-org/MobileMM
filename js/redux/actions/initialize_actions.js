@@ -54,7 +54,7 @@ export default {
           payload: data.outcomesData || null
         });
         dispatch({
-          type: 'USER_CURRENT_MATCH_RECIEVED',
+          type: 'USER_DATING_DATA_RECIEVED',
           payload: data.currentMatchData || null
         });
         dispatch({

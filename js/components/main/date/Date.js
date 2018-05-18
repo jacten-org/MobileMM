@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { 
   Image, 
   ScrollView, 
@@ -8,12 +10,14 @@ import {
   Button 
 } from 'react-native';
 
+import PendingDate from './PendingDate';
 import OpenDrawer from './../../globals/buttons/OpenDrawer';
 import colors from '../../../utils/colors';
 
-class Date extends Component {
+class Dating extends Component {
   constructor() {
     super();
+
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -26,19 +30,39 @@ class Date extends Component {
     };
   };
   render() {
+    let {
+      matches,
+    } = this.props;
+
+    if (matches) {
+      
+    }
+
+
     return (
       <View style={{
         backgroundColor: colors.body,
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}> <Text style={{ 
-          fontSize: 80,
-          fontWeight: '200',
-          color: colors.text,
-      }}>Date</Text> </View>
+        }}>
+        <Text>
+          {matches[0] && matches[0].id}
+        </Text>
+      </View>
     )
   }
 }
 
-export default Date;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+
+  }, dispatch);
+};
+
+const mapStateToProps = state => {
+  return {
+    matches: [ state.dating ]
+
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dating);

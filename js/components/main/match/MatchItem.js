@@ -94,10 +94,12 @@ class MatchItem extends Component {
           </View>
           <View style={styles.dots}>
             <DotIndicator
+              small
               total={match.user1.photos.length}
               current={this.state.currentUser1Photo}
               />
-            <DotIndicator
+            <DotIndicator 
+              small
               total={match.user2.photos.length}
               current={this.state.currentUser2Photo}
               />
@@ -208,7 +210,7 @@ const styles = StyleSheet.create({
   bio: {
     color: colors.text,
     fontWeight: '300',
-    fontSize: 10,
+    fontSize: 11,
   },
   tag: {
     color: colors.body,
@@ -227,6 +229,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   button: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -255,7 +258,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   info: {
     flexDirection: 'row',

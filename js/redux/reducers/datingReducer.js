@@ -1,14 +1,23 @@
+const mapOutPending = (array) => {
+  let pending = array.filter((match) => {
+    return match.issuccessful === 0 && match.firstAccept !== match.user1_id
+  });
+  return {
+    pending,
+    array,
+  }
+}
 
-export default (state = {}, action) => {
-  switch (action.type) {
-    case 'USER_CURRENT_MATCH_RECIEVED':
-      return (state = action.payload);
+export default (state = {}, { type, payload }) => {
+  switch (type) {
+    case 'USER_DATING_DATA_RECIEVED':
+      return mapOutPending([payload]);
     case 'CURRENT_MATCH_ACCECPTED':
-      return (state = action.payload);
+      return (state = payload);
     case 'CURRENT_MATCH_REJECTED_OR_ENDED':
-      return (state = action.payload);
+      return (state = payload);
     case 'CURRENT_MATCH_REFRESHED':
-      return (state = action.payload);
+      return (state = payload);
     default:
       return state;
   }

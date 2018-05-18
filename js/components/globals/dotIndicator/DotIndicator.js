@@ -10,7 +10,7 @@ class DotIndicator extends Component {
 
 
   render() {
-    let { total, current } = this.props;
+    let { total, current, small } = this.props;
 
     let dots = [];
 
@@ -19,12 +19,12 @@ class DotIndicator extends Component {
         i === current ?
         <Image
           key={i}
-          style={styles.dot}
+          style={[styles.dot, small && styles.small]}
           source={require('../../../icons/circleFill.png')}
           /> :
         <Image
           key={i}
-          style={styles.dot}
+          style={[styles.dot, small && styles.small]}
           source={require('../../../icons/circleHollow.png')}
           />
       )
@@ -49,7 +49,11 @@ const styles = StyleSheet.create({
     width: 10,
     tintColor: colors.s1,
     margin: 3,
-  }
+  },
+  small: {
+      height: 7,
+      width: 7,
+  },
 })
 
 export default DotIndicator;
