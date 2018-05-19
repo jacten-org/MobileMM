@@ -10,6 +10,7 @@ import {
   Button 
 } from 'react-native';
 
+import actions from '../../../redux/actions/dating_actions';
 import PendingDate from './PendingDate';
 import OpenDrawer from './../../globals/buttons/OpenDrawer';
 import colors from '../../../utils/colors';
@@ -35,12 +36,11 @@ class Dating extends Component {
     const {
       matches,
       pending,
+      acceptPendingMatch,
+      rejectPendingMatch
     } = this.props;
-
-
-    console.log(pending) 
     
-    if (pending) {
+    if (pending[0]) {
       return (
         <PendingDate
           firstname={pending[0].user2_id.firstname}
@@ -49,6 +49,8 @@ class Dating extends Component {
           bio={pending[0].user2_id.bio}
           photos={pending[0].user2_id.photos.map(photo => photo.url)}
           tags={pending[0].tags}
+          acceptPendingMatch={() => acceptPendingMatch()}
+          rejectPendingMatch={() => rejectPendingMatch()}
           />
       )
     } else {
@@ -58,7 +60,7 @@ class Dating extends Component {
           flex: 1,
           }}>
           <Text>
-            {matches[0] && matches[0].id}
+            NO PENDING MATCHES!!!
           </Text>
         </View>
       )
@@ -66,11 +68,12 @@ class Dating extends Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return bindActionCreators({
-
-//   }, dispatch);
-// };
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    acceptPendingMatch: actions.acceptPendingMatch,
+    rejectPendingMatch: actions.rejectPendingMatch,
+  }, dispatch);
+};
 
 const mapStateToProps = state => {
   return {
@@ -79,4 +82,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Dating);
+export default connect(mapStateToProps, mapDispatchToProps)(Dating);

@@ -29,7 +29,7 @@ export default {
         dispatch({
           type: 'USER_BIO_DATA_RECIEVED',
           payload: data.bioData || null
-        });
+        }); 
         dispatch({
           type: 'USER_TAGS_RECIEVED',
           payload: data.tagData || null

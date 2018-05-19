@@ -27,10 +27,20 @@ class PendingDate extends Component {
     }
   }
 
-  handleVote = () => {
+  toggleModal = () => {
     this.setState({
       modalVisible: true,
     })
+  }
+
+  handleAccept = () => {
+    this.props.acceptPendingMatch();
+    this.setState({modalVisible: false});
+  }
+
+  handleReject = () => {
+    this.props.rejectPendingMatch();
+    this.setState({modalVisible: false});
   }
 
   render () {
@@ -43,8 +53,6 @@ class PendingDate extends Component {
       tags,
       handleVote,
     } = this.props;
-
-    console.log('test', this.props)
 
     if (firstname) {
       let computedAge = turnBirthdayIntoAge(age);
@@ -60,10 +68,10 @@ class PendingDate extends Component {
             <ModalBox
               title={'Are you sure?'}
               body={'You will never see this person again!'}
-              button1Text={'Yes, Reject!'}
+              button1Text={'Reject!'}
               button1Color={'main'}
-              onButton1Press={()=> {this.setState({modalVisible: false})}}
-              button2Text={'No. Go Back!'}
+              onButton1Press={() => {this.handleReject()}}
+              button2Text={'Go Back.'}
               button2Color={'main'}
               onButton2Press={()=> {this.setState({modalVisible: false})}}
               />
@@ -88,13 +96,13 @@ class PendingDate extends Component {
             </Text>
             <View style={{flexDirection: 'row', justifyContent: 'space-evenly', width: width}}>
             <VoteButton
-              onPress={() => this.handleVote('approved')}
-              title='Yes!'
+              onPress={() => this.handleAccept()}
+              title='Accept'
               />
             <VoteButton
               negative
-              onPress={() => this.handleVote('rejected')}
-              title='No Thanks'
+              onPress={() => this.toggleModal()}
+              title='Reject'
               />
             </View>
           </View>
@@ -144,6 +152,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
     paddingBottom: 10,
   },
-  })
+});
 
 export default PendingDate;

@@ -3,36 +3,34 @@ import axios from 'axios';
 import { REST_SERVER_URL } from 'react-native-dotenv';
 
 export default {
-  acceptCurrentMatch() {
+  acceptPendingMatch() {
     return async (dispatch, getState) => {
-      const matchId = getState().currentMatch.id;
+      const matchId = getState().dating.pending[0].id;
       const userId = getState().accountData.id;
       try {
         await axios
           .put(`${REST_SERVER_URL}/api/stageTwo/acceptStageTwo/${matchId}/${userId}`);
-        const { data } = await axios
-          .get(`${REST_SERVER_URL}/api/stageTwo/fetchStageTwo/${userId}`)
+        // const { data } = await axios
+        //   .get(`${REST_SERVER_URL}/api/stageTwo/fetchStageTwo/${userId}`)
         dispatch({
-          type: 'CURRENT_MATCH_ACCECPTED',
-          payload: data
+          type: 'PENDING_DATING_ACCECPTED',
           });
       } catch (err) {
         console.error
       }
     }
   },
-  rejectOrEndCurrentMatch() {
+  rejectPendingMatch() {
     return async (dispatch, getState) => {
-      const matchId = getState().currentMatch.id;
+      const matchId = getState().dating.pending[0].id;
       const userId = getState().accountData.id;
       try {
         await axios
           .put(`${REST_SERVER_URL}/api/stageTwo/rejectOrEndStageTwo/${matchId}/${userId}`);
-        const { data } = await axios
-          .get(`${REST_SERVER_URL}/api/stageTwo/fetchStageTwo/${userId}`)
+        // const { data } = await axios
+        //   .get(`${REST_SERVER_URL}/api/stageTwo/fetchStageTwo/${userId}`)
         dispatch({
-          type: 'CURRENT_MATCH_REJECTED_OR_ENDED',
-          payload: data,
+          type: 'PENDING_DATING_REJECTED',
         });
       } catch (err) {
         console.error

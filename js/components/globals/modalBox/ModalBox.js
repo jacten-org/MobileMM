@@ -35,17 +35,17 @@ let {
         </Text>
       </View>
       <View>
-      <VoteButton
-        onPress={onButton1Press}
-        title={button1Text}
-        color={button1Color}
-        />
-      <VoteButton
-        negative
-        onPress={onButton2Press}
-        title={button2Text}
-        color={button2Color}
-        />
+        <VoteButton
+          onPress={onButton1Press}
+          title={button1Text}
+          color={button1Color}
+          />
+        <VoteButton
+          negative
+          onPress={onButton2Press}
+          title={button2Text}
+          color={button2Color}
+          />
       </View>
     </View>
   )
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     width: width - 100,
     height: width - 80,
     backgroundColor: colors.body,
-    borderLeftWidth: 5,
-    borderColor: colors.s4
+    borderLeftWidth: 6,
+    borderColor: colors.s4,
   },
   title:{
     textAlign: 'center',
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontSize: 20,
     fontWeight: '300',
-    margin: 5
+    margin: 5,
   },
   header: {
     padding: 20,
